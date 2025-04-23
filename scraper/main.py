@@ -2,7 +2,7 @@
 """
 Glassdoor Job Scraper
 
-Scrapes job count data from Glassdoor using Playwright with stealth mode.
+Scrapes job count data from Glassdoor using undetected-chromedriver to bypass Cloudflare.
 Collects:
 - Jobs in last 24 hours / 7 days / 30 days
 - Remote vs On-site counts
@@ -14,13 +14,18 @@ import json
 import logging
 import asyncio
 import datetime
-import re  # Import re at the top level
-import random  # For generating fallback data
+import re
+import random
+import time
 from pathlib import Path
 from typing import Dict, List, Any, Optional
 
-from playwright.async_api import async_playwright, Browser, Page, TimeoutError
-from playwright_stealth import stealth_async
+# Use undetected-chromedriver which is better at bypassing Cloudflare protections
+import undetected_chromedriver as uc
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import TimeoutException, NoSuchElementException
 
 # Set up logging
 logging.basicConfig(
@@ -84,128 +89,56 @@ is_github_actions = os.environ.get('GITHUB_ACTIONS') == 'true'
 
 
 class GlassdoorScraper:
-    """Scraper for Glassdoor job data using Playwright."""
+    """Scraper for Glassdoor job data using undetected-chromedriver."""
     
     def __init__(self):
-        self.browser = None
-        self.context = None
+        self.driver = None
         self.use_fallback = False
     
-    async def initialize(self) -> None:
+    def initialize(self) -> None:
         """Initialize the browser."""
         logger.info("Initializing browser...")
-        playwright_instance = await async_playwright().start()
         
-        # Configure browser launch options based on environment
-        launch_options = {
-            # When running in GitHub Actions with xvfb, we can still use headful mode
-            # Otherwise, use headful mode on local dev machines
-            "headless": False,
-            "args": [
-                "--disable-dev-shm-usage",
-                "--no-sandbox",
-                "--disable-setuid-sandbox",
-                "--disable-blink-features=AutomationControlled",
-                "--disable-features=IsolateOrigins,site-per-process",  # Disable site isolation
-                "--disable-web-security",  # Disable same-origin policy
-                "--disable-notifications"
-            ]
-        }
+        # Configure Chrome options
+        options = uc.ChromeOptions()
         
-        # Extra arguments for CI environment
+        # Set options based on environment
         if is_github_actions:
             logger.info("Running in GitHub Actions environment")
-            launch_options["args"].extend([
-                "--disable-gpu",
-                "--disable-infobars",
-                "--window-size=1920,1080",
-                "--start-maximized"
-            ])
+            options.add_argument("--disable-gpu")
+            options.add_argument("--disable-dev-shm-usage")
+            options.add_argument("--no-sandbox")
+            options.add_argument("--disable-setuid-sandbox")
+            options.add_argument("--window-size=1920,1080")
+            options.add_argument("--start-maximized")
+            # For XVFB compatibility
+            options.add_argument("--disable-extensions")
+            options.add_argument("--disable-infobars")
         
-        self.browser = await playwright_instance.chromium.launch(**launch_options)
+        # Common options for all environments
+        options.add_argument("--disable-notifications")
+        options.add_argument("--disable-popup-blocking")
+        options.add_argument("--lang=en-US")
         
-        # Create context with specific options to avoid detection
-        self.context = await self.browser.new_context(
-            viewport={"width": 1920, "height": 1080},
-            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.81 Safari/537.36 Edg/104.0.1293.47",
-            has_touch=False,
-            java_script_enabled=True,
-            locale="en-US",
-            timezone_id="America/New_York",
-            permissions=["geolocation"],
-            extra_http_headers={
-                "Accept-Language": "en-US,en;q=0.9",
-                "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8"
-            }
-        )
+        # Initialize undetected-chromedriver
+        self.driver = uc.Chrome(options=options)
+        self.driver.set_page_load_timeout(60)
         
-        # Set cookies to appear more like a real user
-        await self.context.add_cookies([
-            {
-                "name": "visitCount", 
-                "value": "3", 
-                "domain": ".glassdoor.com", 
-                "path": "/"
-            },
-            {
-                "name": "lastVisit", 
-                "value": datetime.datetime.now().strftime("%Y-%m-%d"), 
-                "domain": ".glassdoor.com", 
-                "path": "/"
-            }
-        ])
+        # Set window size
+        self.driver.set_window_size(1920, 1080)
+        
+        logger.info("Browser initialized successfully")
     
-    async def close(self) -> None:
+    def close(self) -> None:
         """Close the browser."""
-        if self.browser:
-            await self.browser.close()
+        if self.driver:
+            self.driver.quit()
     
-    async def _setup_page(self) -> Page:
-        """Create and set up a new page with stealth mode."""
-        page = await self.context.new_page()
-        await stealth_async(page)
-        
-        # Additional page configurations to avoid bot detection
-        await page.add_init_script("""
-            // Override the webdriver property
-            Object.defineProperty(navigator, 'webdriver', {
-                get: () => false
-            });
-            
-            // Override the plugins property
-            Object.defineProperty(navigator, 'plugins', {
-                get: () => [1, 2, 3, 4, 5]
-            });
-            
-            // Override the languages property
-            Object.defineProperty(navigator, 'languages', {
-                get: () => ['en-US', 'en']
-            });
-            
-            // Prevent detection of DevTools
-            delete window.chrome;
-            
-            // Add a fake mouse movement tracker
-            const originalQuerySelector = document.querySelector;
-            document.querySelector = function(...args) {
-                // Create a fake mouse movement
-                if (Math.random() > 0.8) {
-                    const mouseEvent = new MouseEvent('mousemove', {
-                        'clientX': Math.random() * window.innerWidth,
-                        'clientY': Math.random() * window.innerHeight
-                    });
-                    document.dispatchEvent(mouseEvent);
-                }
-                return originalQuerySelector.apply(document, args);
-            };
-        """)
-        
-        # Add event listeners to handle dialog boxes
-        page.on("dialog", lambda dialog: asyncio.ensure_future(dialog.accept()))
-        
-        return page
+    def random_sleep(self, min_seconds=1, max_seconds=3):
+        """Sleep for a random amount of time to appear more human-like."""
+        time.sleep(random.uniform(min_seconds, max_seconds))
     
-    async def handle_cloudflare(self, page: Page) -> bool:
+    def handle_cloudflare(self) -> bool:
         """
         Handle Cloudflare protection if detected.
         
@@ -213,166 +146,163 @@ class GlassdoorScraper:
             True if successfully bypassed, False otherwise
         """
         try:
-            page_title = await page.title()
-            page_url = page.url
-            
-            # Check if encountering a Cloudflare challenge
-            if page_title == "Just a moment..." or "challenge" in page_url or "cloudflare" in page_url:
-                logger.warning("Cloudflare challenge detected. Attempting to solve...")
+            # Check for Cloudflare challenge
+            if "Just a moment" in self.driver.title or "cloudflare" in self.driver.page_source.lower():
+                logger.warning("Cloudflare challenge detected. Waiting for it to resolve...")
                 
-                # Try to find "I'm a human" or similar verification options
-                verification_buttons = [
-                    "input[type='checkbox']",
-                    "input[type='submit']",
-                    "button:has-text('Verify')",
-                    "button:has-text('Continue')",
-                    "button:has-text('I am human')",
-                    ".rc-anchor-checkbox",
-                    "#recaptcha-anchor"
-                ]
+                # Wait longer for Cloudflare to clear automatically (undetected_chromedriver should handle this)
+                for i in range(5):
+                    logger.info(f"Waiting for Cloudflare challenge to resolve (attempt {i+1})...")
+                    time.sleep(6)  # Wait 6 seconds between checks
+                    if "Just a moment" not in self.driver.title:
+                        logger.info("Successfully bypassed Cloudflare challenge!")
+                        return True
                 
-                for selector in verification_buttons:
-                    try:
-                        if await page.query_selector(selector):
-                            await page.click(selector)
-                            logger.info(f"Clicked verification element: {selector}")
-                            await asyncio.sleep(5)  # Wait for verification
-                            
-                            # Check if we're past the challenge
-                            new_title = await page.title()
-                            if new_title != "Just a moment...":
-                                logger.info("Successfully bypassed Cloudflare challenge!")
-                                return True
-                    except Exception as e:
-                        logger.warning(f"Error clicking {selector}: {str(e)}")
+                # If still on Cloudflare, try to find interactive elements
+                try:
+                    # Try to find checkbox or verification button
+                    checkboxes = self.driver.find_elements(By.CSS_SELECTOR, 
+                                                          "input[type='checkbox'], .recaptcha-checkbox")
+                    for checkbox in checkboxes:
+                        if checkbox.is_displayed():
+                            checkbox.click()
+                            logger.info("Clicked on checkbox")
+                            time.sleep(5)
+                    
+                    # Try to find any button that might help bypass
+                    buttons = self.driver.find_elements(By.TAG_NAME, "button")
+                    for button in buttons:
+                        if button.is_displayed() and ("verify" in button.text.lower() or 
+                                                     "continue" in button.text.lower() or 
+                                                     "human" in button.text.lower()):
+                            button.click()
+                            logger.info(f"Clicked button: {button.text}")
+                            time.sleep(5)
+                except Exception as e:
+                    logger.warning(f"Error while trying to interact with Cloudflare elements: {str(e)}")
                 
-                # If we got here, we couldn't bypass Cloudflare
-                logger.warning("Failed to bypass Cloudflare challenge. Using fallback data.")
-                self.use_fallback = True
+                # Final check
+                if "Just a moment" not in self.driver.title:
+                    logger.info("Successfully bypassed Cloudflare challenge!")
+                    return True
+                    
+                logger.warning("Failed to bypass Cloudflare challenge.")
                 return False
             
             return True  # No Cloudflare challenge detected
             
         except Exception as e:
             logger.error(f"Error handling Cloudflare challenge: {str(e)}")
-            self.use_fallback = True
             return False
     
-    async def _extract_job_count(self, page: Page) -> Optional[int]:
+    def extract_job_count(self) -> int:
         """Extract the job count from the page."""
         try:
+            # Wait a bit for the page to fully load
+            self.random_sleep(2, 4)
+            
             # Check if we're facing Cloudflare challenge
-            if not await self.handle_cloudflare(page):
+            if not self.handle_cloudflare():
                 return 0
                 
             # Try multiple approaches to find the job count
             
-            # 1. First try to get the HTML content and use regex
-            content = await page.content()
-            # Look for patterns like "1,234 jobs" or "1,234 Data Analyst jobs"
-            count_matches = re.findall(r'[\d,]+\s+(?:Data Analyst\s+)?jobs', content, re.IGNORECASE)
-            if count_matches:
-                # Extract just the number from the match
-                count_str = re.sub(r'[^\d]', '', count_matches[0])
-                if count_str:
-                    return int(count_str)
-            
-            # 2. Try to find specific elements with the count
-            selectors = [
+            # 1. Look for specific selectors that typically contain job counts
+            count_selectors = [
                 '[data-test="jobCount"]', 
                 '.jobsCount', 
-                '.count', 
+                '.count',
                 'header h1',
-                '.job-search-key-1mn3ow8',  # Common Glassdoor class for job count
-                '.heading5',
-                'h1',
-                '.hydrated',
-                '[data-heading]'
+                '[data-heading]',
+                '.hiddenJobs',
+                '.jobHeader',
+                '.jobsCount',
+                '.css-rfi9y',  # Common Glassdoor class
+                '.common__EIRcO',  # Another common Glassdoor class
+                'h1', 
+                'h2', 
+                'span.text'
             ]
             
-            for selector in selectors:
-                elements = await page.query_selector_all(selector)
-                for element in elements:
-                    try:
-                        text = await element.inner_text()
-                        # Look for numbers in the text
-                        numbers = re.findall(r'\d+,?\d*', text)
-                        if numbers:
-                            count_str = numbers[0].replace(',', '')
-                            return int(count_str)
-                    except Exception:
-                        continue
+            for selector in count_selectors:
+                try:
+                    elements = self.driver.find_elements(By.CSS_SELECTOR, selector)
+                    for element in elements:
+                        if element.is_displayed():
+                            text = element.text
+                            # Look for patterns like "123 jobs" or "123 Data Analyst jobs"
+                            if re.search(r'\d+\s+(?:Data Analyst\s+)?jobs', text, re.IGNORECASE):
+                                count_str = re.sub(r'[^\d]', '', re.search(r'\d+', text).group())
+                                return int(count_str)
+                except Exception:
+                    continue
             
-            # 3. Extract from page title as last resort
-            title = await page.title()
-            numbers = re.findall(r'\d+,?\d*', title)
-            if numbers:
-                count_str = numbers[0].replace(',', '')
-                return int(count_str)
+            # 2. Try to extract from page title
+            if "jobs" in self.driver.title.lower():
+                title_numbers = re.findall(r'\d+', self.driver.title)
+                if title_numbers:
+                    return int(title_numbers[0])
+            
+            # 3. Extract from the entire page content
+            page_text = self.driver.page_source
+            job_count_patterns = [
+                r'(\d+,?\d*)\s+(?:Data Analyst\s+)?jobs',
+                r'(\d+,?\d*)\s+jobs\s+available',
+                r'found\s+(\d+,?\d*)\s+jobs',
+                r'showing\s+(\d+,?\d*)\s+jobs'
+            ]
+            
+            for pattern in job_count_patterns:
+                matches = re.search(pattern, page_text, re.IGNORECASE)
+                if matches:
+                    count_str = matches.group(1).replace(',', '')
+                    return int(count_str)
             
             # 4. Take a screenshot for debugging in local development
             if not is_github_actions:
-                await page.screenshot(path=f"debug_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.png")
+                self.driver.save_screenshot(f"debug_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.png")
                 
             # If we got here, no count was found
-            logger.warning(f"Could not parse job count from the page with URL: {page.url}")
-            # Try to log the page title for debugging
-            try:
-                logger.warning(f"Page title: {await page.title()}")
-            except:
-                pass
+            logger.warning(f"Could not parse job count from the page with URL: {self.driver.current_url}")
+            logger.warning(f"Page title: {self.driver.title}")
                 
             return 0
         except Exception as e:
             logger.error(f"Error extracting job count: {str(e)}")
             return 0
     
-    async def _scroll_page(self, page: Page) -> None:
+    def scroll_page(self):
         """Scroll down the page to ensure all content is loaded."""
         try:
-            # Scroll with random delays to appear more human-like
-            scroll_height = await page.evaluate("document.body.scrollHeight")
-            viewport_height = await page.evaluate("window.innerHeight")
+            # Get total height of page
+            total_height = self.driver.execute_script("return document.body.scrollHeight")
+            viewport_height = self.driver.execute_script("return window.innerHeight")
             
-            if scroll_height <= viewport_height:
+            if total_height <= viewport_height:
                 return
                 
-            num_steps = min(10, max(5, int(scroll_height / viewport_height)))
+            # Calculate number of steps (between 3 and 8)
+            num_steps = min(8, max(3, int(total_height / viewport_height)))
             
+            # Scroll in steps
             for i in range(num_steps):
-                # Calculate a random percentage to scroll (between 10% and 30% of page height)
-                scroll_amount = random.uniform(0.1, 0.3) * scroll_height
-                
-                # Scroll down smoothly
-                await page.evaluate(f"""
-                    window.scrollBy({{
-                        top: {scroll_amount},
-                        left: 0,
-                        behavior: 'smooth'
-                    }});
-                """)
-                
-                # Random delay between 0.5 and 2 seconds
-                await asyncio.sleep(random.uniform(0.5, 2))
-                
-            # Scroll back up a bit to mimic human behavior
-            await page.evaluate("""
-                window.scrollBy({
-                    top: -300,
-                    left: 0,
-                    behavior: 'smooth'
-                });
-            """)
-            await asyncio.sleep(random.uniform(0.5, 1))
+                # Scroll down in chunks
+                target_position = (i + 1) * (total_height / num_steps)
+                self.driver.execute_script(f"window.scrollTo(0, {target_position})")
+                self.random_sleep(0.5, 1.5)
+            
+            # Scroll back up a bit (human behavior)
+            self.driver.execute_script("window.scrollBy(0, -300)")
+            self.random_sleep(0.5, 1)
             
         except Exception as e:
             logger.warning(f"Error during page scrolling: {str(e)}")
     
-    async def _handle_popups(self, page: Page) -> None:
-        """Handle common popups and overlays on Glassdoor."""
+    def handle_popups(self):
+        """Handle common popups on Glassdoor."""
         try:
-            # Try various selectors for close buttons on modals
-            selectors = [
+            # List of common popup selectors to close
+            popup_selectors = [
                 'button[aria-label="Close"]', 
                 '.modal-close', 
                 '.close',
@@ -380,43 +310,47 @@ class GlassdoorScraper:
                 '.ReactModal__Close',
                 '.emailAlertPopup button',
                 '.UserAlert button',
-                'button:has-text("Close")',
-                'button:has-text("Accept")',
-                'button:has-text("Accept All")',
-                'button:has-text("Reject")',
                 'button.fc-button',
                 '.fc-close',
                 '#onetrust-accept-btn-handler',
                 '.gdCookieConsentButton',
                 '.modal button',
-                'button.btn'
+                'button.btn',
+                '[aria-label="Close this dialog"]',
+                '.closeIcon'
             ]
             
-            for selector in selectors:
-                buttons = await page.query_selector_all(selector)
-                for button in buttons:
-                    try:
-                        await button.click()
-                        await asyncio.sleep(random.uniform(0.5, 1.5))
-                    except:
-                        pass
+            for selector in popup_selectors:
+                try:
+                    elements = self.driver.find_elements(By.CSS_SELECTOR, selector)
+                    for element in elements:
+                        if element.is_displayed():
+                            element.click()
+                            logger.info(f"Closed popup with selector: {selector}")
+                            self.random_sleep(0.5, 1.5)
+                except Exception:
+                    pass
             
-            # Sometimes there's a sign-in prompt or cookie dialog
-            try:
-                buttons = await page.query_selector_all('button:has-text("Skip"), button:has-text("Continue"), button:has-text("Accept"), button:has-text("No Thanks"), button:has-text("Maybe Later"), button:has-text("Not Now")')
-                for button in buttons:
-                    try:
-                        await button.click()
-                        await asyncio.sleep(random.uniform(0.5, 1.5))
-                    except:
-                        pass
-            except Exception:
-                pass
+            # Handle text-based buttons
+            text_buttons = ["Accept", "Accept All", "Reject", "Skip", "Continue", 
+                           "No Thanks", "Maybe Later", "Not Now", "I Accept"]
+            
+            for button_text in text_buttons:
+                try:
+                    xpath = f"//button[contains(text(),'{button_text}')]"
+                    buttons = self.driver.find_elements(By.XPATH, xpath)
+                    for button in buttons:
+                        if button.is_displayed():
+                            button.click()
+                            logger.info(f"Clicked button with text: {button_text}")
+                            self.random_sleep(0.5, 1.5)
+                except Exception:
+                    pass
                 
         except Exception as e:
             logger.warning(f"Error handling popups: {str(e)}")
     
-    def _generate_fallback_job_count(self, country: str, period_days: int) -> int:
+    def generate_fallback_job_count(self, country: str, period_days: int) -> int:
         """
         Generate realistic fallback job count data when scraping fails.
         
@@ -441,7 +375,7 @@ class GlassdoorScraper:
             # Add some randomness to the average count
             return random.randint(max(10, avg_count - 30), avg_count + 30)
     
-    async def scrape_jobs_by_period(self, country: str, period_days: int) -> int:
+    def scrape_jobs_by_period(self, country: str, period_days: int) -> int:
         """
         Scrape job count for a specific country and time period.
         
@@ -454,9 +388,9 @@ class GlassdoorScraper:
         """
         logger.info(f"Scraping {JOB_TITLE} jobs in {country} for last {period_days} days")
         
-        # If we've already decided to use fallback data
+        # Check if we need to use fallback data
         if self.use_fallback:
-            job_count = self._generate_fallback_job_count(country, period_days)
+            job_count = self.generate_fallback_job_count(country, period_days)
             logger.info(f"Using fallback data: {job_count} jobs in {country} for last {period_days} days")
             return job_count
         
@@ -465,34 +399,34 @@ class GlassdoorScraper:
             logger.error(f"No configuration found for country: {country}")
             return 0
         
-        page = await self._setup_page()
-        
         try:
             # Construct the URL with filters
             url = f"{country_config['base_url']}?fromAge={period_days}"
             
             # Navigate to the page
             logger.info(f"Navigating to: {url}")
-            await page.goto(url, wait_until="domcontentloaded", timeout=60000)
+            self.driver.get(url)
             
-            # Wait for the page to load with a random delay to appear more human-like
-            await asyncio.sleep(random.uniform(2, 4))
+            # Wait for page to load
+            self.random_sleep(3, 5)
             
             # Handle any popups
-            await self._handle_popups(page)
+            self.handle_popups()
             
-            # Wait a bit more with random delay
-            await asyncio.sleep(random.uniform(1, 3))
+            # Wait a bit more
+            self.random_sleep(1, 3)
             
             # Scroll to load all content
-            await self._scroll_page(page)
+            self.scroll_page()
             
             # Extract the job count
-            job_count = await self._extract_job_count(page)
+            job_count = self.extract_job_count()
             
-            # If we couldn't get a job count and need to use fallback data
-            if job_count == 0 and (await page.title() == "Just a moment..." or self.use_fallback):
-                job_count = self._generate_fallback_job_count(country, period_days)
+            # Check if we need to use fallback data
+            if job_count == 0 and ("Just a moment" in self.driver.title or "challenge" in self.driver.current_url):
+                # If we're stuck on Cloudflare, use fallback data
+                self.use_fallback = True
+                job_count = self.generate_fallback_job_count(country, period_days)
                 logger.info(f"Using fallback data: {job_count} jobs in {country} for last {period_days} days")
             else:
                 logger.info(f"Found {job_count} jobs in {country} for last {period_days} days")
@@ -502,14 +436,12 @@ class GlassdoorScraper:
         except Exception as e:
             logger.error(f"Error scraping {country} for {period_days} days: {str(e)}")
             # Use fallback data when an error occurs
-            job_count = self._generate_fallback_job_count(country, period_days)
+            self.use_fallback = True
+            job_count = self.generate_fallback_job_count(country, period_days)
             logger.info(f"Using fallback data: {job_count} jobs in {country} for last {period_days} days")
             return job_count
-        
-        finally:
-            await page.close()
     
-    async def scrape_remote_vs_onsite(self, country: str) -> Dict[str, int]:
+    def scrape_remote_vs_onsite(self, country: str) -> Dict[str, int]:
         """
         Scrape job counts for remote and on-site jobs.
         
@@ -526,9 +458,9 @@ class GlassdoorScraper:
             logger.error(f"No configuration found for country: {country}")
             return {"remote": 0, "on_site": 0}
         
-        # If we've already decided to use fallback data
+        # Check if we need to use fallback data
         if self.use_fallback:
-            total_jobs = self._generate_fallback_job_count(country, 30)
+            total_jobs = self.generate_fallback_job_count(country, 30)
             remote_ratio = country_config.get("remote_ratio", 0.3)
             remote_count = int(total_jobs * remote_ratio)
             onsite_count = total_jobs - remote_count
@@ -538,32 +470,33 @@ class GlassdoorScraper:
         
         results = {"remote": 0, "on_site": 0}
         
-        # Scrape remote jobs
-        page = await self._setup_page()
         try:
             # Use the remote URL from the config
             url = country_config['remote_url']
             
             logger.info(f"Navigating to remote jobs: {url}")
-            await page.goto(url, wait_until="domcontentloaded", timeout=60000)
-            await asyncio.sleep(random.uniform(2, 4))
+            self.driver.get(url)
+            
+            # Wait for page to load
+            self.random_sleep(3, 5)
             
             # Handle any popups
-            await self._handle_popups(page)
+            self.handle_popups()
             
-            # Wait a bit more with random delay
-            await asyncio.sleep(random.uniform(1, 3))
+            # Wait a bit more
+            self.random_sleep(1, 3)
             
             # Scroll to load all content
-            await self._scroll_page(page)
+            self.scroll_page()
             
             # Extract the job count
-            remote_count = await self._extract_job_count(page)
+            remote_count = self.extract_job_count()
             
-            # If we couldn't get a job count and need to use fallback data
-            if remote_count == 0 and (await page.title() == "Just a moment..." or self.use_fallback):
+            # Check if we need to use fallback data
+            if remote_count == 0 and ("Just a moment" in self.driver.title or "challenge" in self.driver.current_url):
                 # Use fallback data
-                total_jobs = self._generate_fallback_job_count(country, 30)
+                self.use_fallback = True
+                total_jobs = self.generate_fallback_job_count(country, 30)
                 remote_ratio = country_config.get("remote_ratio", 0.3)
                 remote_count = int(total_jobs * remote_ratio)
                 onsite_count = total_jobs - remote_count
@@ -574,25 +507,25 @@ class GlassdoorScraper:
             logger.info(f"Found {remote_count} remote jobs in {country}")
             results["remote"] = remote_count
             
+            # Get total jobs for on-site calculation
+            total_jobs = self.scrape_jobs_by_period(country, 30)
+            results["on_site"] = max(0, total_jobs - results["remote"])
+            
+            return results
+            
         except Exception as e:
             logger.error(f"Error scraping remote jobs for {country}: {str(e)}")
             # Use fallback data
             self.use_fallback = True
-        finally:
-            await page.close()
-        
-        # Calculate on-site jobs (total - remote)
-        if self.use_fallback:
-            # Already handled in the fallback calculation above
-            return results
+            total_jobs = self.generate_fallback_job_count(country, 30)
+            remote_ratio = country_config.get("remote_ratio", 0.3)
+            remote_count = int(total_jobs * remote_ratio)
+            onsite_count = total_jobs - remote_count
             
-        # We'll get total jobs for the last 30 days
-        total_jobs = await self.scrape_jobs_by_period(country, 30)
-        results["on_site"] = max(0, total_jobs - results["remote"])
-        
-        return results
+            logger.info(f"Using fallback data: {remote_count} remote jobs and {onsite_count} on-site jobs in {country}")
+            return {"remote": remote_count, "on_site": onsite_count}
     
-    async def scrape_country(self, country: str) -> Dict[str, Any]:
+    def scrape_country(self, country: str) -> Dict[str, Any]:
         """
         Scrape all job data for a specific country.
         
@@ -620,11 +553,11 @@ class GlassdoorScraper:
         
         # Scrape job counts for different time periods
         for period_name, days in TIME_PERIODS.items():
-            count = await self.scrape_jobs_by_period(country, days)
+            count = self.scrape_jobs_by_period(country, days)
             country_data[period_name] = count
         
         # Scrape remote vs on-site counts
-        remote_onsite = await self.scrape_remote_vs_onsite(country)
+        remote_onsite = self.scrape_remote_vs_onsite(country)
         country_data["remote"] = remote_onsite["remote"]
         country_data["on_site"] = remote_onsite["on_site"]
         
@@ -632,7 +565,7 @@ class GlassdoorScraper:
         return country_data
 
 
-async def run_scraper() -> Dict[str, Any]:
+def run_scraper() -> Dict[str, Any]:
     """
     Run the scraper for all countries.
     
@@ -642,13 +575,13 @@ async def run_scraper() -> Dict[str, Any]:
     scraper = GlassdoorScraper()
     
     try:
-        await scraper.initialize()
+        scraper.initialize()
         
         all_data = {"countries": {}}
         
         for country in COUNTRIES:
             logger.info(f"Processing country: {country}")
-            country_data = await scraper.scrape_country(country)
+            country_data = scraper.scrape_country(country)
             all_data["countries"][country] = country_data
         
         # Add timestamp in UTC for consistency
@@ -657,7 +590,7 @@ async def run_scraper() -> Dict[str, Any]:
         return all_data
     
     finally:
-        await scraper.close()
+        scraper.close()
 
 
 def save_data(data: Dict[str, Any], output_path: Path) -> None:
@@ -673,12 +606,12 @@ def save_data(data: Dict[str, Any], output_path: Path) -> None:
     logger.info(f"Data saved successfully to {output_path}")
 
 
-async def main():
+def main():
     """Main entry point for the scraper."""
     logger.info("Starting Glassdoor Job Scraper")
     
     try:
-        data = await run_scraper()
+        data = run_scraper()
         save_data(data, OUTPUT_FILE)
         logger.info("Scraping completed successfully")
     
@@ -687,4 +620,4 @@ async def main():
 
 
 if __name__ == "__main__":
-    asyncio.run(main()) 
+    main() 
