@@ -1,18 +1,40 @@
-# Python virtual environment
-venv/
-
-# Python bytecode files
+# Python
 __pycache__/
 *.py[cod]
 *$py.class
-
-# Distribution / packaging
-dist/
+*.so
+.Python
+env/
 build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
 *.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+ENV/
 
 # Logs
 *.log
+logs/
+scraper/scraper.log
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
 
 # OS generated files
 .DS_Store
@@ -21,4 +43,7 @@ build/
 .Spotlight-V100
 .Trashes
 ehthumbs.db
-Thumbs.db 
+Thumbs.db
+
+# Screenshots
+scraper/screenshots/ 
