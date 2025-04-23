@@ -17,8 +17,7 @@ import datetime
 from pathlib import Path
 from typing import Dict, List, Any, Optional
 
-import playwright
-from playwright.async_api import async_playwright, Browser, Page
+from playwright.async_api import async_playwright, Browser, Page, TimeoutError
 from playwright_stealth import stealth_async
 
 # Set up logging
@@ -140,7 +139,7 @@ class GlassdoorScraper:
             else:
                 logger.warning(f"Could not parse job count from text: {count_text}")
                 return 0
-        except playwright.errors.TimeoutError:
+        except TimeoutError:
             logger.error("Timeout waiting for job count element")
             return 0
         except Exception as e:
