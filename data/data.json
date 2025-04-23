@@ -1,121 +1,330 @@
 {
-  "last_updated": "2023-07-15T12:00:00",
   "countries": {
     "Canada": {
       "country": "Canada",
-      "last_24h": 45,
-      "last_7d": 189,
-      "last_30d": 578,
-      "remote": 123,
-      "on_site": 455,
+      "last_24h": 4,
+      "last_7d": 14,
+      "last_30d": 47,
+      "remote": 14,
+      "on_site": 33,
       "job_listings": [
         {
-          "title": "Data Analyst",
-          "company": "ABC Tech",
-          "location": "Toronto, ON (Remote)",
-          "salary": "$75,000 - $95,000 a year",
-          "posted_date": "1d ago",
-          "description": "We are looking for a data analyst to join our growing team...",
-          "requirements": "Bachelor's degree in Statistics, Mathematics, Computer Science, or related field. 2+ years of experience with SQL and data visualization tools. Experience with Python or R.",
-          "responsibilities": "Analyze large datasets to identify trends and patterns. Create dashboards and visualizations to communicate insights. Collaborate with cross-functional teams to support data-driven decision making.",
-          "link": "https://www.glassdoor.com/job-listing/data-analyst-abc-tech-JV_IC2281069_KO0,12_KE13,21.htm"
+          "title": "Business Intelligence Analyst",
+          "company": "RBC",
+          "location": "Ottawa, ON (Remote)",
+          "salary": "CAD65,000 - CAD110,000 a year",
+          "posted_date": "11d ago",
+          "description": "We are looking for a skilled Business Intelligence Analyst to join our team...",
+          "requirements": "Bachelor's degree in a relevant field. Experience with SQL, Excel, and data visualization tools. Strong analytical skills and attention to detail.",
+          "responsibilities": "Analyze business data to identify trends and insights. Create dashboards and reports. Collaborate with stakeholders to support business decisions.",
+          "link": "https://www.glassdoor.com/job-listing/example-0"
+        },
+        {
+          "title": "Data Analyst - Finance",
+          "company": "Shopify",
+          "location": "Calgary, AB (Remote)",
+          "salary": "CAD65,000 - CAD110,000 a year",
+          "posted_date": "4d ago",
+          "description": "We are looking for a skilled Data Analyst - Finance to join our team...",
+          "requirements": "Bachelor's degree in a relevant field. Experience with SQL, Excel, and data visualization tools. Strong analytical skills and attention to detail.",
+          "responsibilities": "Analyze business data to identify trends and insights. Create dashboards and reports. Collaborate with stakeholders to support business decisions.",
+          "link": "https://www.glassdoor.com/job-listing/example-1"
         },
         {
           "title": "Senior Data Analyst",
-          "company": "XYZ Corp",
-          "location": "Vancouver, BC",
-          "salary": "$90,000 - $110,000 a year",
-          "posted_date": "3d ago",
-          "description": "XYZ Corp is seeking a senior data analyst to lead our analytics initiatives...",
-          "requirements": "Master's degree preferred. 5+ years of experience in data analysis. Expert in SQL, Python, and visualization tools like Tableau or Power BI.",
-          "responsibilities": "Lead data analysis projects from conception to completion. Mentor junior analysts. Work with stakeholders to define business requirements and KPIs.",
-          "link": "https://www.glassdoor.com/job-listing/senior-data-analyst-xyz-corp-JV_IC2278756_KO0,19_KE20,28.htm"
+          "company": "RBC",
+          "location": "Toronto, ON (Remote)",
+          "salary": "CAD65,000 - CAD110,000 a year",
+          "posted_date": "1d ago",
+          "description": "We are looking for a skilled Senior Data Analyst to join our team...",
+          "requirements": "Bachelor's degree in a relevant field. Experience with SQL, Excel, and data visualization tools. Strong analytical skills and attention to detail.",
+          "responsibilities": "Analyze business data to identify trends and insights. Create dashboards and reports. Collaborate with stakeholders to support business decisions.",
+          "link": "https://www.glassdoor.com/job-listing/example-2"
+        },
+        {
+          "title": "Business Intelligence Analyst",
+          "company": "CIBC",
+          "location": "Montreal, QC",
+          "salary": "CAD65,000 - CAD110,000 a year",
+          "posted_date": "12d ago",
+          "description": "We are looking for a skilled Business Intelligence Analyst to join our team...",
+          "requirements": "Bachelor's degree in a relevant field. Experience with SQL, Excel, and data visualization tools. Strong analytical skills and attention to detail.",
+          "responsibilities": "Analyze business data to identify trends and insights. Create dashboards and reports. Collaborate with stakeholders to support business decisions.",
+          "link": "https://www.glassdoor.com/job-listing/example-3"
+        },
+        {
+          "title": "Junior Data Analyst",
+          "company": "CIBC",
+          "location": "Calgary, AB (Remote)",
+          "salary": "CAD65,000 - CAD110,000 a year",
+          "posted_date": "13d ago",
+          "description": "We are looking for a skilled Junior Data Analyst to join our team...",
+          "requirements": "Bachelor's degree in a relevant field. Experience with SQL, Excel, and data visualization tools. Strong analytical skills and attention to detail.",
+          "responsibilities": "Analyze business data to identify trends and insights. Create dashboards and reports. Collaborate with stakeholders to support business decisions.",
+          "link": "https://www.glassdoor.com/job-listing/example-4"
         }
       ]
     },
     "Ireland": {
       "country": "Ireland",
-      "last_24h": 12,
-      "last_7d": 53,
-      "last_30d": 142,
-      "remote": 78,
-      "on_site": 64,
+      "last_24h": 1,
+      "last_7d": 5,
+      "last_30d": 17,
+      "remote": 8,
+      "on_site": 9,
       "job_listings": [
         {
-          "title": "Data Analyst - Finance",
-          "company": "European Banking Group",
-          "location": "Dublin, Ireland",
-          "salary": "€45,000 - €65,000 a year",
-          "posted_date": "2d ago",
-          "description": "Join our finance analytics team to support data-driven decision making...",
-          "requirements": "Bachelor's degree in a quantitative field. Experience with financial data analysis. SQL and Excel proficiency required.",
-          "responsibilities": "Develop financial reports and dashboards. Perform ad-hoc analysis to answer business questions. Support budget planning and forecasting.",
-          "link": "https://www.glassdoor.ie/job-listing/data-analyst-finance-european-banking-group-JV_IC2301395_KO0,20_KE21,43.htm"
+          "title": "Data Analyst Specialist",
+          "company": "Salesforce Dublin",
+          "location": "Limerick",
+          "salary": "\u20ac45,000 - \u20ac75,000 a year",
+          "posted_date": "4d ago",
+          "description": "We are looking for a skilled Data Analyst Specialist to join our team...",
+          "requirements": "Bachelor's degree in a relevant field. Experience with SQL, Excel, and data visualization tools. Strong analytical skills and attention to detail.",
+          "responsibilities": "Analyze business data to identify trends and insights. Create dashboards and reports. Collaborate with stakeholders to support business decisions.",
+          "link": "https://www.glassdoor.com/job-listing/example-0"
+        },
+        {
+          "title": "Data Analyst",
+          "company": "Google Dublin",
+          "location": "Waterford",
+          "salary": "\u20ac45,000 - \u20ac75,000 a year",
+          "posted_date": "3d ago",
+          "description": "We are looking for a skilled Data Analyst to join our team...",
+          "requirements": "Bachelor's degree in a relevant field. Experience with SQL, Excel, and data visualization tools. Strong analytical skills and attention to detail.",
+          "responsibilities": "Analyze business data to identify trends and insights. Create dashboards and reports. Collaborate with stakeholders to support business decisions.",
+          "link": "https://www.glassdoor.com/job-listing/example-1"
+        },
+        {
+          "title": "Senior Data Analyst",
+          "company": "Accenture Ireland",
+          "location": "Galway (Remote)",
+          "salary": "\u20ac45,000 - \u20ac75,000 a year",
+          "posted_date": "12d ago",
+          "description": "We are looking for a skilled Senior Data Analyst to join our team...",
+          "requirements": "Bachelor's degree in a relevant field. Experience with SQL, Excel, and data visualization tools. Strong analytical skills and attention to detail.",
+          "responsibilities": "Analyze business data to identify trends and insights. Create dashboards and reports. Collaborate with stakeholders to support business decisions.",
+          "link": "https://www.glassdoor.com/job-listing/example-2"
+        },
+        {
+          "title": "Senior Data Analyst",
+          "company": "Microsoft Ireland",
+          "location": "Dublin (Remote)",
+          "salary": "\u20ac45,000 - \u20ac75,000 a year",
+          "posted_date": "5d ago",
+          "description": "We are looking for a skilled Senior Data Analyst to join our team...",
+          "requirements": "Bachelor's degree in a relevant field. Experience with SQL, Excel, and data visualization tools. Strong analytical skills and attention to detail.",
+          "responsibilities": "Analyze business data to identify trends and insights. Create dashboards and reports. Collaborate with stakeholders to support business decisions.",
+          "link": "https://www.glassdoor.com/job-listing/example-3"
+        },
+        {
+          "title": "Senior Data Analyst",
+          "company": "Facebook Ireland",
+          "location": "Limerick",
+          "salary": "\u20ac45,000 - \u20ac75,000 a year",
+          "posted_date": "11d ago",
+          "description": "We are looking for a skilled Senior Data Analyst to join our team...",
+          "requirements": "Bachelor's degree in a relevant field. Experience with SQL, Excel, and data visualization tools. Strong analytical skills and attention to detail.",
+          "responsibilities": "Analyze business data to identify trends and insights. Create dashboards and reports. Collaborate with stakeholders to support business decisions.",
+          "link": "https://www.glassdoor.com/job-listing/example-4"
         }
       ]
     },
     "Portugal": {
       "country": "Portugal",
-      "last_24h": 5,
-      "last_7d": 18,
-      "last_30d": 72,
-      "remote": 45,
-      "on_site": 27,
+      "last_24h": 0,
+      "last_7d": 2,
+      "last_30d": 9,
+      "remote": 5,
+      "on_site": 4,
       "job_listings": [
         {
+          "title": "BI Developer",
+          "company": "OutSystems",
+          "location": "Aveiro (Remote)",
+          "salary": "\u20ac25,000 - \u20ac50,000 a year",
+          "posted_date": "2d ago",
+          "description": "We are looking for a skilled BI Developer to join our team...",
+          "requirements": "Bachelor's degree in a relevant field. Experience with SQL, Excel, and data visualization tools. Strong analytical skills and attention to detail.",
+          "responsibilities": "Analyze business data to identify trends and insights. Create dashboards and reports. Collaborate with stakeholders to support business decisions.",
+          "link": "https://www.glassdoor.com/job-listing/example-0"
+        },
+        {
+          "title": "Marketing Data Analyst",
+          "company": "Farfetch",
+          "location": "Aveiro",
+          "salary": "\u20ac25,000 - \u20ac50,000 a year",
+          "posted_date": "10d ago",
+          "description": "We are looking for a skilled Marketing Data Analyst to join our team...",
+          "requirements": "Bachelor's degree in a relevant field. Experience with SQL, Excel, and data visualization tools. Strong analytical skills and attention to detail.",
+          "responsibilities": "Analyze business data to identify trends and insights. Create dashboards and reports. Collaborate with stakeholders to support business decisions.",
+          "link": "https://www.glassdoor.com/job-listing/example-1"
+        },
+        {
+          "title": "Senior Data Analyst",
+          "company": "OutSystems",
+          "location": "Porto",
+          "salary": "\u20ac25,000 - \u20ac50,000 a year",
+          "posted_date": "13d ago",
+          "description": "We are looking for a skilled Senior Data Analyst to join our team...",
+          "requirements": "Bachelor's degree in a relevant field. Experience with SQL, Excel, and data visualization tools. Strong analytical skills and attention to detail.",
+          "responsibilities": "Analyze business data to identify trends and insights. Create dashboards and reports. Collaborate with stakeholders to support business decisions.",
+          "link": "https://www.glassdoor.com/job-listing/example-2"
+        },
+        {
           "title": "Junior Data Analyst",
-          "company": "Tech Startup PT",
-          "location": "Lisbon, Portugal (Remote)",
-          "salary": "€30,000 - €40,000 a year",
-          "posted_date": "5d ago",
-          "description": "Exciting opportunity for a junior data analyst to join our fast-growing startup...",
-          "requirements": "Bachelor's degree. Knowledge of SQL and Excel. Interest in data visualization and business intelligence.",
-          "responsibilities": "Assist in data collection and cleaning. Create basic reports and visualizations. Support the senior analytics team with various projects.",
-          "link": "https://www.glassdoor.pt/job-listing/junior-data-analyst-tech-startup-pt-JV_IC2268867_KO0,19_KE20,35.htm"
+          "company": "Volkswagen Digital Solutions",
+          "location": "Aveiro",
+          "salary": "\u20ac25,000 - \u20ac50,000 a year",
+          "posted_date": "13d ago",
+          "description": "We are looking for a skilled Junior Data Analyst to join our team...",
+          "requirements": "Bachelor's degree in a relevant field. Experience with SQL, Excel, and data visualization tools. Strong analytical skills and attention to detail.",
+          "responsibilities": "Analyze business data to identify trends and insights. Create dashboards and reports. Collaborate with stakeholders to support business decisions.",
+          "link": "https://www.glassdoor.com/job-listing/example-3"
+        },
+        {
+          "title": "Business Intelligence Analyst",
+          "company": "Talkdesk",
+          "location": "Lisbon",
+          "salary": "\u20ac25,000 - \u20ac50,000 a year",
+          "posted_date": "1d ago",
+          "description": "We are looking for a skilled Business Intelligence Analyst to join our team...",
+          "requirements": "Bachelor's degree in a relevant field. Experience with SQL, Excel, and data visualization tools. Strong analytical skills and attention to detail.",
+          "responsibilities": "Analyze business data to identify trends and insights. Create dashboards and reports. Collaborate with stakeholders to support business decisions.",
+          "link": "https://www.glassdoor.com/job-listing/example-4"
         }
       ]
     },
     "United Arab Emirates": {
       "country": "United Arab Emirates",
-      "last_24h": 8,
-      "last_7d": 26,
-      "last_30d": 93,
-      "remote": 12,
-      "on_site": 81,
+      "last_24h": 1,
+      "last_7d": 3,
+      "last_30d": 13,
+      "remote": 1,
+      "on_site": 12,
       "job_listings": [
         {
-          "title": "Data Analyst - Retail",
-          "company": "Global Retail Group",
-          "location": "Dubai, UAE",
-          "salary": "AED 15,000 - AED 22,000 a month",
-          "posted_date": "2d ago",
-          "description": "We are looking for a data analyst to help optimize our retail operations...",
-          "requirements": "Bachelor's degree in a relevant field. 3+ years of experience in retail analytics. Strong SQL skills and experience with BI tools.",
-          "responsibilities": "Analyze sales data to identify trends and opportunities. Create regular reports for management. Support inventory optimization initiatives.",
-          "link": "https://www.glassdoor.ae/job-listing/data-analyst-retail-global-retail-group-JV_IC2346311_KO0,19_KE20,38.htm"
+          "title": "Marketing Data Analyst",
+          "company": "ADNOC",
+          "location": "Ras Al Khaimah (Remote)",
+          "salary": "AED12,000 - AED25,000 a month",
+          "posted_date": "12d ago",
+          "description": "We are looking for a skilled Marketing Data Analyst to join our team...",
+          "requirements": "Bachelor's degree in a relevant field. Experience with SQL, Excel, and data visualization tools. Strong analytical skills and attention to detail.",
+          "responsibilities": "Analyze business data to identify trends and insights. Create dashboards and reports. Collaborate with stakeholders to support business decisions.",
+          "link": "https://www.glassdoor.com/job-listing/example-0"
+        },
+        {
+          "title": "Marketing Data Analyst",
+          "company": "ADNOC",
+          "location": "Dubai (Remote)",
+          "salary": "AED12,000 - AED25,000 a month",
+          "posted_date": "14d ago",
+          "description": "We are looking for a skilled Marketing Data Analyst to join our team...",
+          "requirements": "Bachelor's degree in a relevant field. Experience with SQL, Excel, and data visualization tools. Strong analytical skills and attention to detail.",
+          "responsibilities": "Analyze business data to identify trends and insights. Create dashboards and reports. Collaborate with stakeholders to support business decisions.",
+          "link": "https://www.glassdoor.com/job-listing/example-1"
+        },
+        {
+          "title": "Senior Data Analyst",
+          "company": "Dubai Holding",
+          "location": "Abu Dhabi",
+          "salary": "AED12,000 - AED25,000 a month",
+          "posted_date": "11d ago",
+          "description": "We are looking for a skilled Senior Data Analyst to join our team...",
+          "requirements": "Bachelor's degree in a relevant field. Experience with SQL, Excel, and data visualization tools. Strong analytical skills and attention to detail.",
+          "responsibilities": "Analyze business data to identify trends and insights. Create dashboards and reports. Collaborate with stakeholders to support business decisions.",
+          "link": "https://www.glassdoor.com/job-listing/example-2"
+        },
+        {
+          "title": "Senior Data Analyst",
+          "company": "Etihad Airways",
+          "location": "Sharjah",
+          "salary": "AED12,000 - AED25,000 a month",
+          "posted_date": "4d ago",
+          "description": "We are looking for a skilled Senior Data Analyst to join our team...",
+          "requirements": "Bachelor's degree in a relevant field. Experience with SQL, Excel, and data visualization tools. Strong analytical skills and attention to detail.",
+          "responsibilities": "Analyze business data to identify trends and insights. Create dashboards and reports. Collaborate with stakeholders to support business decisions.",
+          "link": "https://www.glassdoor.com/job-listing/example-3"
+        },
+        {
+          "title": "Senior Data Analyst",
+          "company": "Etihad Airways",
+          "location": "Dubai",
+          "salary": "AED12,000 - AED25,000 a month",
+          "posted_date": "4d ago",
+          "description": "We are looking for a skilled Senior Data Analyst to join our team...",
+          "requirements": "Bachelor's degree in a relevant field. Experience with SQL, Excel, and data visualization tools. Strong analytical skills and attention to detail.",
+          "responsibilities": "Analyze business data to identify trends and insights. Create dashboards and reports. Collaborate with stakeholders to support business decisions.",
+          "link": "https://www.glassdoor.com/job-listing/example-4"
         }
       ]
     },
     "Germany": {
       "country": "Germany",
-      "last_24h": 15,
-      "last_7d": 68,
-      "last_30d": 235,
-      "remote": 87,
-      "on_site": 148,
+      "last_24h": 3,
+      "last_7d": 9,
+      "last_30d": 31,
+      "remote": 12,
+      "on_site": 19,
       "job_listings": [
         {
-          "title": "Data Analyst (m/f/d)",
-          "company": "German Tech GmbH",
-          "location": "Berlin, Germany",
-          "salary": "€55,000 - €70,000 a year",
-          "posted_date": "1d ago",
-          "description": "Join our analytics team to help drive data-based decisions...",
-          "requirements": "Bachelor's or Master's degree in a quantitative field. Experience with Python, SQL, and data visualization. German language skills are a plus.",
-          "responsibilities": "Analyze business data and create insights. Develop and maintain dashboards. Collaborate with product and marketing teams to define metrics.",
-          "link": "https://www.glassdoor.de/job-listing/data-analyst-m-f-d-german-tech-gmbh-JV_IC2622109_KO0,18_KE19,35.htm"
+          "title": "Data Analyst - Finance",
+          "company": "Volkswagen",
+          "location": "Cologne (Remote)",
+          "salary": "\u20ac50,000 - \u20ac80,000 a year",
+          "posted_date": "14d ago",
+          "description": "We are looking for a skilled Data Analyst - Finance to join our team...",
+          "requirements": "Bachelor's degree in a relevant field. Experience with SQL, Excel, and data visualization tools. Strong analytical skills and attention to detail.",
+          "responsibilities": "Analyze business data to identify trends and insights. Create dashboards and reports. Collaborate with stakeholders to support business decisions.",
+          "link": "https://www.glassdoor.com/job-listing/example-0"
+        },
+        {
+          "title": "Business Intelligence Analyst",
+          "company": "BMW Group",
+          "location": "Berlin (Remote)",
+          "salary": "\u20ac50,000 - \u20ac80,000 a year",
+          "posted_date": "8d ago",
+          "description": "We are looking for a skilled Business Intelligence Analyst to join our team...",
+          "requirements": "Bachelor's degree in a relevant field. Experience with SQL, Excel, and data visualization tools. Strong analytical skills and attention to detail.",
+          "responsibilities": "Analyze business data to identify trends and insights. Create dashboards and reports. Collaborate with stakeholders to support business decisions.",
+          "link": "https://www.glassdoor.com/job-listing/example-1"
+        },
+        {
+          "title": "Data Analyst",
+          "company": "SAP",
+          "location": "Cologne",
+          "salary": "\u20ac50,000 - \u20ac80,000 a year",
+          "posted_date": "11d ago",
+          "description": "We are looking for a skilled Data Analyst to join our team...",
+          "requirements": "Bachelor's degree in a relevant field. Experience with SQL, Excel, and data visualization tools. Strong analytical skills and attention to detail.",
+          "responsibilities": "Analyze business data to identify trends and insights. Create dashboards and reports. Collaborate with stakeholders to support business decisions.",
+          "link": "https://www.glassdoor.com/job-listing/example-2"
+        },
+        {
+          "title": "Data Analyst",
+          "company": "Bosch",
+          "location": "Berlin",
+          "salary": "\u20ac50,000 - \u20ac80,000 a year",
+          "posted_date": "12d ago",
+          "description": "We are looking for a skilled Data Analyst to join our team...",
+          "requirements": "Bachelor's degree in a relevant field. Experience with SQL, Excel, and data visualization tools. Strong analytical skills and attention to detail.",
+          "responsibilities": "Analyze business data to identify trends and insights. Create dashboards and reports. Collaborate with stakeholders to support business decisions.",
+          "link": "https://www.glassdoor.com/job-listing/example-3"
+        },
+        {
+          "title": "Data Analyst - Finance",
+          "company": "Allianz",
+          "location": "Cologne (Remote)",
+          "salary": "\u20ac50,000 - \u20ac80,000 a year",
+          "posted_date": "11d ago",
+          "description": "We are looking for a skilled Data Analyst - Finance to join our team...",
+          "requirements": "Bachelor's degree in a relevant field. Experience with SQL, Excel, and data visualization tools. Strong analytical skills and attention to detail.",
+          "responsibilities": "Analyze business data to identify trends and insights. Create dashboards and reports. Collaborate with stakeholders to support business decisions.",
+          "link": "https://www.glassdoor.com/job-listing/example-4"
         }
       ]
     }
-  }
-} 
+  },
+  "last_updated": "2025-04-23T14:25:49.955329"
+}
