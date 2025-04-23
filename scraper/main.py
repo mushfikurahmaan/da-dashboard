@@ -14,6 +14,7 @@ import json
 import logging
 import asyncio
 import datetime
+import re  # Import re at the top level
 from pathlib import Path
 from typing import Dict, List, Any, Optional
 
@@ -140,40 +141,61 @@ class GlassdoorScraper:
     async def _extract_job_count(self, page: Page) -> Optional[int]:
         """Extract the job count from the page."""
         try:
-            # Wait for the jobs count element to be visible
-            # First try the jobCount element
-            try:
-                await page.wait_for_selector('[data-test="jobCount"], .jobsCount, .count', timeout=10000)
-                
-                # Extract the count text from the most likely elements
-                count_element = await page.query_selector('[data-test="jobCount"], .jobsCount, .count, header h1')
-                if count_element:
-                    count_text = await count_element.inner_text()
-                    
-                    # Parse the count from text like "1,234 Data Analyst Jobs"
-                    # First try to extract just numbers
-                    import re
-                    numbers = re.findall(r'\d+,?\d*', count_text)
-                    if numbers:
-                        count_str = numbers[0].replace(',', '')
-                        return int(count_str)
-                    
-                    # If that fails, try the first word as the count
-                    count_str = count_text.split()[0].replace(',', '')
-                    if count_str.isdigit():
-                        return int(count_str)
-            except TimeoutError:
-                # If the above fails, look for count in the page title
-                title = await page.title()
-                numbers = re.findall(r'\d+,?\d*', title)
-                if numbers:
-                    count_str = numbers[0].replace(',', '')
+            # Try multiple approaches to find the job count
+            
+            # 1. First try to get the HTML content and use regex
+            content = await page.content()
+            # Look for patterns like "1,234 jobs" or "1,234 Data Analyst jobs"
+            count_matches = re.findall(r'[\d,]+\s+(?:Data Analyst\s+)?jobs', content, re.IGNORECASE)
+            if count_matches:
+                # Extract just the number from the match
+                count_str = re.sub(r'[^\d]', '', count_matches[0])
+                if count_str:
                     return int(count_str)
             
-            logger.warning(f"Could not parse job count from the page")
-            return 0
-        except TimeoutError:
-            logger.error("Timeout waiting for job count element")
+            # 2. Try to find specific elements with the count
+            selectors = [
+                '[data-test="jobCount"]', 
+                '.jobsCount', 
+                '.count', 
+                'header h1',
+                '.job-search-key-1mn3ow8',  # Common Glassdoor class for job count
+                '.heading5',
+                'h1'
+            ]
+            
+            for selector in selectors:
+                elements = await page.query_selector_all(selector)
+                for element in elements:
+                    try:
+                        text = await element.inner_text()
+                        # Look for numbers in the text
+                        numbers = re.findall(r'\d+,?\d*', text)
+                        if numbers:
+                            count_str = numbers[0].replace(',', '')
+                            return int(count_str)
+                    except Exception:
+                        continue
+            
+            # 3. Extract from page title as last resort
+            title = await page.title()
+            numbers = re.findall(r'\d+,?\d*', title)
+            if numbers:
+                count_str = numbers[0].replace(',', '')
+                return int(count_str)
+            
+            # 4. Take a screenshot for debugging in local development
+            if not is_github_actions:
+                await page.screenshot(path=f"debug_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.png")
+                
+            # If we got here, no count was found
+            logger.warning(f"Could not parse job count from the page with URL: {page.url}")
+            # Try to log the page title for debugging
+            try:
+                logger.warning(f"Page title: {await page.title()}")
+            except:
+                pass
+                
             return 0
         except Exception as e:
             logger.error(f"Error extracting job count: {str(e)}")
@@ -206,21 +228,30 @@ class GlassdoorScraper:
                 '.ReactModal__Close',
                 '.emailAlertPopup button',
                 '.UserAlert button',
-                'button:has-text("Close")'
+                'button:has-text("Close")',
+                'button:has-text("Accept")',
+                'button:has-text("Accept All")',
+                'button:has-text("Reject")'
             ]
             
             for selector in selectors:
                 buttons = await page.query_selector_all(selector)
                 for button in buttons:
-                    await button.click()
-                    await asyncio.sleep(0.5)
+                    try:
+                        await button.click()
+                        await asyncio.sleep(0.5)
+                    except:
+                        pass
             
-            # Sometimes there's a sign-in prompt
+            # Sometimes there's a sign-in prompt or cookie dialog
             try:
-                skip_button = await page.query_selector('button:has-text("Skip"), button:has-text("Continue")')
-                if skip_button:
-                    await skip_button.click()
-                    await asyncio.sleep(0.5)
+                buttons = await page.query_selector_all('button:has-text("Skip"), button:has-text("Continue"), button:has-text("Accept"), button:has-text("No Thanks")')
+                for button in buttons:
+                    try:
+                        await button.click()
+                        await asyncio.sleep(0.5)
+                    except:
+                        pass
             except Exception:
                 pass
                 
@@ -253,13 +284,16 @@ class GlassdoorScraper:
             
             # Navigate to the page
             logger.info(f"Navigating to: {url}")
-            await page.goto(url, wait_until="domcontentloaded")
+            await page.goto(url, wait_until="domcontentloaded", timeout=60000)
             
             # Wait for the page to load and handle potential overlays/modals
             await asyncio.sleep(3)
             
             # Handle any popups
             await self._handle_popups(page)
+            
+            # Wait a bit more for the page to fully load
+            await asyncio.sleep(2)
             
             # Scroll to load all content
             await self._scroll_page(page)
@@ -303,11 +337,14 @@ class GlassdoorScraper:
             url = country_config['remote_url']
             
             logger.info(f"Navigating to remote jobs: {url}")
-            await page.goto(url, wait_until="domcontentloaded")
+            await page.goto(url, wait_until="domcontentloaded", timeout=60000)
             await asyncio.sleep(3)
             
             # Handle any popups
             await self._handle_popups(page)
+            
+            # Wait a bit more for the page to fully load
+            await asyncio.sleep(2)
             
             # Scroll to load all content
             await self._scroll_page(page)
