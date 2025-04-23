@@ -1,0 +1,8 @@
+theme: jekyll-theme-primer
+title: Data Analyst Job Insights Dashboard
+description: A real-time dashboard tracking Data Analyst job opportunities across multiple countries
+exclude:
+  - venv
+  - scraper
+  - .github
+  - README.md 
