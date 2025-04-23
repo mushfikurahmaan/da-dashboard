@@ -1,0 +1,76 @@
+/* Custom styles beyond Tailwind */
+
+/* Job listing cards */
+.job-card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.job-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Salary highlight */
+.salary {
+    color: #4f46e5;
+    font-weight: 600;
+}
+
+/* Responsive fixes */
+@media (max-width: 640px) {
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+/* Job tag styles */
+.job-tag {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.job-tag-remote {
+    background-color: #dbeafe;
+    color: #1e40af;
+}
+
+.job-tag-onsite {
+    background-color: #e0e7ff;
+    color: #3730a3;
+}
+
+.job-tag-recent {
+    background-color: #dcfce7;
+    color: #166534;
+}
+
+/* Loading spinner */
+.loading-spinner {
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 2px solid rgba(79, 70, 229, 0.3);
+    border-radius: 50%;
+    border-top-color: #4f46e5;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+} 

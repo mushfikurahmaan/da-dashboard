@@ -1,0 +1,40 @@
+name: Job Data Scraper
+
+on:
+  schedule:
+    - cron: '0 */12 * * *'  # Run every 12 hours
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r scraper/requirements.txt
+      
+      - name: Install Playwright browsers
+        run: |
+          python -m playwright install chromium
+      
+      - name: Run scraper
+        run: |
+          python scraper/main.py
+      
+      - name: Commit and push if there are changes
+        run: |
+          git config --global user.name 'GitHub Actions Bot'
+          git config --global user.email 'actions@github.com'
+          git add data/data.json
+          git diff --quiet && git diff --staged --quiet || git commit -m "Update job data $(date -u +'%Y-%m-%d %H:%M:%S')"
+          git push 
