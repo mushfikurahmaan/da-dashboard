@@ -2,7 +2,7 @@ name: Job Data Scraper
 
 on:
   schedule:
-    - cron: '0 */12 * * *'  # Run every 12 hours
+    - cron: '0 23 * * *'  # Run at 11 PM UTC (5 AM GMT+6 Bangladesh time)
   workflow_dispatch:  # Allow manual trigger
 
 permissions:

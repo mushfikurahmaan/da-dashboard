@@ -46,4 +46,4 @@ ehthumbs.db
 Thumbs.db
 
 # Screenshots
-scraper/screenshots/ 
+scraper/screenshots/ venv/

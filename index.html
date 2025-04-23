@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Analyst Job Insights Dashboard</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -74,7 +75,7 @@
 
         <!-- Job Listings -->
         <div class="bg-white p-6 rounded-lg shadow-md mb-8">
-            <h2 class="text-xl font-semibold text-gray-800 mb-4">Latest Job Listings</h2>
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Latest Job Listings (Last 24 Hours)</h2>
             <div id="job-listings" class="space-y-4">
                 <!-- Job listings will be populated here by JavaScript -->
                 <div class="text-gray-500">Loading job listings...</div>
@@ -84,7 +85,7 @@
 
     <footer class="bg-gray-800 text-white py-4">
         <div class="container mx-auto px-4 text-center">
-            <p>Data refreshed every 12 hours via GitHub Actions</p>
+            <p>Data refreshed daily at 5 AM Bangladesh time (GMT+6)</p>
         </div>
     </footer>
 

@@ -7,7 +7,8 @@ A real-time dashboard tracking Data Analyst job opportunities from Glassdoor acr
 - **Job Counts**: Track jobs posted in the last 24 hours, 7 days, and 30 days
 - **Remote vs On-site**: Compare remote and on-site job opportunities 
 - **Country Comparison**: Data from multiple countries (Canada, Ireland, Portugal, UAE, Germany)
-- **Automated Updates**: Data refreshed every 12 hours via GitHub Actions
+- **Latest Job Listings**: View job listings posted in the last 24 hours only
+- **Automated Updates**: Data refreshed daily at 5 AM Bangladesh time (GMT+6) via GitHub Actions
 
 ## How It Works
 
@@ -18,7 +19,7 @@ The dashboard uses a Playwright-based scraper to collect job count data from Gla
    - Time period: Last 24h, 7d, and 30d
    - Job type: Remote vs on-site
    - Geography: Multiple countries
-3. **Automation**: Scheduled to run every 12 hours via GitHub Actions
+3. **Automation**: Scheduled to run daily at 5 AM Bangladesh time (GMT+6) via GitHub Actions
 4. **Visualization**: Frontend dashboard built with HTML, CSS, and vanilla JavaScript
 
 ## Setting Up Locally

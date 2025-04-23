@@ -1,6 +1,7 @@
 /**
  * Data Analyst Job Insights Dashboard
  * Main JavaScript file that loads and displays job data
+ * Data refreshed daily at 5 AM Bangladesh time (GMT+6)
  */
 
 // Global variables
@@ -108,16 +109,26 @@ function renderJobListings(listings) {
         return;
     }
     
+    // Filter to show only jobs from the last 24 hours
+    const last24HoursJobs = listings.filter(job => job.posted_date.includes('1d') || job.posted_date.includes('0d') || 
+                                               job.posted_date.includes('hours') || job.posted_date.includes('hour') || 
+                                               job.posted_date.includes('just now'));
+    
+    if (last24HoursJobs.length === 0) {
+        jobListingsElement.innerHTML = '<div class="text-gray-500">No job listings available from the last 24 hours</div>';
+        return;
+    }
+    
     // Create job cards for each listing
-    listings.forEach(job => {
+    last24HoursJobs.forEach(job => {
         const jobCard = document.createElement('div');
         jobCard.className = 'job-card bg-white border border-gray-200 p-4 rounded-lg shadow-sm fade-in';
         
         // Check if the job is remote
         const isRemote = job.location.toLowerCase().includes('remote');
         
-        // Check if the job was posted in the last 3 days
-        const isRecent = job.posted_date.includes('1d') || job.posted_date.includes('2d') || job.posted_date.includes('3d');
+        // All jobs shown are recent (within last 24 hours)
+        const isRecent = true;
         
         jobCard.innerHTML = `
             <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-2">
