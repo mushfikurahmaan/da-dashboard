@@ -29,10 +29,15 @@ jobs:
       - name: Install Playwright browsers
         run: |
           python -m playwright install chromium
-      
-      - name: Run scraper
+          
+      - name: Install xvfb for headful mode
         run: |
-          python scraper/main.py
+          sudo apt-get update
+          sudo apt-get install -y xvfb
+      
+      - name: Run scraper with xvfb
+        run: |
+          xvfb-run --auto-servernum python scraper/main.py
       
       - name: Commit and push if there are changes
         run: |

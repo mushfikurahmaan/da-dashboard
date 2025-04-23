@@ -1,35 +1,56 @@
-# Real-Time Job Insights Dashboard
+# Data Analyst Job Insights Dashboard
 
-A dashboard that provides real-time insights on Data Analyst job opportunities across multiple countries (Canada, Ireland, Portugal, UAE, and Germany).
+A real-time dashboard tracking Data Analyst job opportunities from Glassdoor across multiple countries.
 
 ## Features
 
-- Job counts for the last 24 hours, 7 days, and 30 days
-- Breakdown of remote vs. on-site positions
-- Detailed job listings with responsibilities, requirements, and salary information
-- Automated data collection every 12 hours via GitHub Actions
+- **Job Counts**: Track jobs posted in the last 24 hours, 7 days, and 30 days
+- **Remote vs On-site**: Compare remote and on-site job opportunities 
+- **Country Comparison**: Data from multiple countries (Canada, Ireland, Portugal, UAE, Germany)
+- **Automated Updates**: Data refreshed every 12 hours via GitHub Actions
 
-## Technologies Used
+## How It Works
 
-- **Backend**: Python with Playwright for web scraping
-- **Frontend**: HTML, JavaScript, and Tailwind CSS
-- **Deployment**: GitHub Pages
-- **Automation**: GitHub Actions
+The dashboard uses a Playwright-based scraper to collect job count data from Glassdoor:
 
-## Project Structure
+1. **Scraper**: Uses Playwright with stealth mode to navigate Glassdoor without being detected
+2. **Data Collection**: Gathers counts of Data Analyst jobs based on:
+   - Time period: Last 24h, 7d, and 30d
+   - Job type: Remote vs on-site
+   - Geography: Multiple countries
+3. **Automation**: Scheduled to run every 12 hours via GitHub Actions
+4. **Visualization**: Frontend dashboard built with HTML, CSS, and vanilla JavaScript
 
-- `scraper/` - Python scripts for data collection
-- `data/` - Contains the scraped job data in JSON format
-- `index.html` - Main dashboard interface
-- `js/` - JavaScript files for the frontend
-- `css/` - Custom CSS (in addition to Tailwind)
-- `.github/workflows/` - GitHub Actions workflow files
-
-## Setup and Usage
+## Setting Up Locally
 
 1. Clone this repository
-2. Install dependencies: `pip install -r scraper/requirements.txt`
-3. Run the scraper manually: `python scraper/main.py`
-4. Open `index.html` in your browser
+2. Install dependencies:
+   ```bash
+   pip install -r scraper/requirements.txt
+   python -m playwright install chromium
+   ```
+3. Run the scraper:
+   ```bash
+   python scraper/main.py
+   ```
+4. Open `index.html` in your browser to view the dashboard
 
-For automatic updates, the GitHub Actions workflow will run the scraper every 12 hours and update the data. 
+## Technology Stack
+
+- **Frontend**: HTML5, CSS3, JavaScript, Chart.js, Tailwind CSS
+- **Scraping**: Python, Playwright, playwright-stealth
+- **Automation**: GitHub Actions
+- **Data Storage**: JSON (stored in the repository)
+
+## Contributing
+
+Contributions are welcome! Here are some ways you can contribute:
+
+- Add support for additional countries
+- Improve scraper reliability
+- Enhance dashboard visualizations
+- Fix bugs or improve documentation
+
+## Legal Note
+
+This tool is for educational purposes only. Please ensure your scraping activities comply with Glassdoor's terms of service and robots.txt policy. Use at your own risk. 
