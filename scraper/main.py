@@ -35,7 +35,6 @@ logger = logging.getLogger("glassdoor_scraper")
 OUTPUT_FILE = Path(__file__).parent.parent / "data" / "data.json"
 COUNTRIES = ["Canada", "Ireland", "Portugal", "United Arab Emirates", "Germany"]
 JOB_TITLE = "Data Analyst"
-GLASSDOOR_BASE_URL = "https://www.glassdoor.com/Job/jobs.htm"
 
 # Time periods to search
 TIME_PERIODS = {
@@ -44,13 +43,28 @@ TIME_PERIODS = {
     "last_30d": 30
 }
 
-# Country specific parameters
+# Country specific parameters with correct URLs
 COUNTRY_CONFIGS = {
-    "Canada": {"country_code": "ca", "location_id": "N,11"},
-    "Ireland": {"country_code": "ie", "location_id": "N,69"},
-    "Portugal": {"country_code": "pt", "location_id": "N,139"},
-    "United Arab Emirates": {"country_code": "ae", "location_id": "N,189"},
-    "Germany": {"country_code": "de", "location_id": "N,96"}
+    "Canada": {
+        "base_url": "https://www.glassdoor.com/Job/canada-data-analyst-jobs-SRCH_IL.0,6_IN3_KO7,19.htm",
+        "remote_url": "https://www.glassdoor.com/Job/canada-remote-data-analyst-jobs-SRCH_IL.0,6_IN3_KO7,27.htm"
+    },
+    "Ireland": {
+        "base_url": "https://www.glassdoor.com/Job/ireland-data-analyst-jobs-SRCH_IL.0,7_IN70_KO8,20.htm",
+        "remote_url": "https://www.glassdoor.com/Job/ireland-remote-data-analyst-jobs-SRCH_IL.0,7_IN70_KO8,28.htm"
+    },
+    "Portugal": {
+        "base_url": "https://www.glassdoor.com/Job/portugal-data-analyst-jobs-SRCH_IL.0,8_IN195_KO9,21.htm",
+        "remote_url": "https://www.glassdoor.com/Job/portugal-remote-data-analyst-jobs-SRCH_IL.0,8_IN195_KO9,29.htm"
+    },
+    "United Arab Emirates": {
+        "base_url": "https://www.glassdoor.com/Job/united-arab-emirates-data-analyst-jobs-SRCH_IL.0,20_IN6_KO21,33.htm",
+        "remote_url": "https://www.glassdoor.com/Job/united-arab-emirates-remote-data-analyst-jobs-SRCH_IL.0,20_IN6_KO21,41.htm"
+    },
+    "Germany": {
+        "base_url": "https://www.glassdoor.com/Job/germany-data-analyst-jobs-SRCH_IL.0,7_IN96_KO8,20.htm",
+        "remote_url": "https://www.glassdoor.com/Job/germany-remote-data-analyst-jobs-SRCH_IL.0,7_IN96_KO8,28.htm"
+    }
 }
 
 # Check if running in GitHub Actions
@@ -127,18 +141,37 @@ class GlassdoorScraper:
         """Extract the job count from the page."""
         try:
             # Wait for the jobs count element to be visible
-            await page.wait_for_selector('h1[data-test="jobCount"], [data-test="jobCount"]', timeout=10000)
+            # First try the jobCount element
+            try:
+                await page.wait_for_selector('[data-test="jobCount"], .jobsCount, .count', timeout=10000)
+                
+                # Extract the count text from the most likely elements
+                count_element = await page.query_selector('[data-test="jobCount"], .jobsCount, .count, header h1')
+                if count_element:
+                    count_text = await count_element.inner_text()
+                    
+                    # Parse the count from text like "1,234 Data Analyst Jobs"
+                    # First try to extract just numbers
+                    import re
+                    numbers = re.findall(r'\d+,?\d*', count_text)
+                    if numbers:
+                        count_str = numbers[0].replace(',', '')
+                        return int(count_str)
+                    
+                    # If that fails, try the first word as the count
+                    count_str = count_text.split()[0].replace(',', '')
+                    if count_str.isdigit():
+                        return int(count_str)
+            except TimeoutError:
+                # If the above fails, look for count in the page title
+                title = await page.title()
+                numbers = re.findall(r'\d+,?\d*', title)
+                if numbers:
+                    count_str = numbers[0].replace(',', '')
+                    return int(count_str)
             
-            # Extract the count text
-            count_text = await page.locator('h1[data-test="jobCount"], [data-test="jobCount"]').inner_text()
-            
-            # Parse the count from text like "1,234 Data Analyst Jobs"
-            count_str = count_text.split()[0].replace(',', '')
-            if count_str.isdigit():
-                return int(count_str)
-            else:
-                logger.warning(f"Could not parse job count from text: {count_text}")
-                return 0
+            logger.warning(f"Could not parse job count from the page")
+            return 0
         except TimeoutError:
             logger.error("Timeout waiting for job count element")
             return 0
@@ -172,7 +205,8 @@ class GlassdoorScraper:
                 '[data-test="modal-close"]',
                 '.ReactModal__Close',
                 '.emailAlertPopup button',
-                '.UserAlert button'
+                '.UserAlert button',
+                'button:has-text("Close")'
             ]
             
             for selector in selectors:
@@ -183,7 +217,7 @@ class GlassdoorScraper:
             
             # Sometimes there's a sign-in prompt
             try:
-                skip_button = await page.query_selector('button:has-text("Skip")')
+                skip_button = await page.query_selector('button:has-text("Skip"), button:has-text("Continue")')
                 if skip_button:
                     await skip_button.click()
                     await asyncio.sleep(0.5)
@@ -215,12 +249,7 @@ class GlassdoorScraper:
         
         try:
             # Construct the URL with filters
-            url = (
-                f"{GLASSDOOR_BASE_URL}?"
-                f"sc.keyword={JOB_TITLE.replace(' ', '+')}&"
-                f"locT=N&locId={country_config['location_id']}&"
-                f"fromAge={period_days}"
-            )
+            url = f"{country_config['base_url']}?fromAge={period_days}"
             
             # Navigate to the page
             logger.info(f"Navigating to: {url}")
@@ -270,13 +299,8 @@ class GlassdoorScraper:
         # Scrape remote jobs
         page = await self._setup_page()
         try:
-            # Construct the URL for remote jobs
-            url = (
-                f"{GLASSDOOR_BASE_URL}?"
-                f"sc.keyword={JOB_TITLE.replace(' ', '+')}&"
-                f"locT=N&locId={country_config['location_id']}&"
-                f"remoteWorkType=1"  # Filter for remote jobs
-            )
+            # Use the remote URL from the config
+            url = country_config['remote_url']
             
             logger.info(f"Navigating to remote jobs: {url}")
             await page.goto(url, wait_until="domcontentloaded")
@@ -361,8 +385,8 @@ async def run_scraper() -> Dict[str, Any]:
             country_data = await scraper.scrape_country(country)
             all_data["countries"][country] = country_data
         
-        # Add timestamp
-        all_data["last_updated"] = datetime.datetime.now().isoformat()
+        # Add timestamp in UTC for consistency
+        all_data["last_updated"] = datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
         
         return all_data
     
