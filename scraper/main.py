@@ -93,7 +93,6 @@ class GlassdoorScraper:
     
     def __init__(self):
         self.driver = None
-        self.use_fallback = False
     
     def initialize(self) -> None:
         """Initialize the browser."""
@@ -350,31 +349,6 @@ class GlassdoorScraper:
         except Exception as e:
             logger.warning(f"Error handling popups: {str(e)}")
     
-    def generate_fallback_job_count(self, country: str, period_days: int) -> int:
-        """
-        Generate realistic fallback job count data when scraping fails.
-        
-        Args:
-            country: Country name
-            period_days: Number of days to look back
-            
-        Returns:
-            A realistic job count based on country and period
-        """
-        country_config = COUNTRY_CONFIGS.get(country, {})
-        avg_count = country_config.get("avg_count", 200)
-        
-        # Scale based on time period
-        if period_days == 1:  # last 24h
-            base_count = int(avg_count * 0.05)  # About 5% of monthly jobs per day
-            return random.randint(max(1, base_count - 5), base_count + 5)
-        elif period_days == 7:  # last week
-            base_count = int(avg_count * 0.25)  # About 25% of monthly jobs per week
-            return random.randint(max(5, base_count - 15), base_count + 15)
-        else:  # last 30 days
-            # Add some randomness to the average count
-            return random.randint(max(10, avg_count - 30), avg_count + 30)
-    
     def scrape_jobs_by_period(self, country: str, period_days: int) -> int:
         """
         Scrape job count for a specific country and time period.
@@ -384,20 +358,14 @@ class GlassdoorScraper:
             period_days: Number of days to look back (1, 7, or 30)
             
         Returns:
-            The number of jobs found
+            The number of jobs found or -1 if data cannot be found
         """
         logger.info(f"Scraping {JOB_TITLE} jobs in {country} for last {period_days} days")
-        
-        # Check if we need to use fallback data
-        if self.use_fallback:
-            job_count = self.generate_fallback_job_count(country, period_days)
-            logger.info(f"Using fallback data: {job_count} jobs in {country} for last {period_days} days")
-            return job_count
         
         country_config = COUNTRY_CONFIGS.get(country)
         if not country_config:
             logger.error(f"No configuration found for country: {country}")
-            return 0
+            return -1
         
         try:
             # Construct the URL with filters
@@ -422,24 +390,17 @@ class GlassdoorScraper:
             # Extract the job count
             job_count = self.extract_job_count()
             
-            # Check if we need to use fallback data
+            # Check if we couldn't find data
             if job_count == 0 and ("Just a moment" in self.driver.title or "challenge" in self.driver.current_url):
-                # If we're stuck on Cloudflare, use fallback data
-                self.use_fallback = True
-                job_count = self.generate_fallback_job_count(country, period_days)
-                logger.info(f"Using fallback data: {job_count} jobs in {country} for last {period_days} days")
-            else:
-                logger.info(f"Found {job_count} jobs in {country} for last {period_days} days")
+                logger.warning(f"Could not retrieve data for {country} for last {period_days} days (Cloudflare challenge)")
+                return -1
             
+            logger.info(f"Found {job_count} jobs in {country} for last {period_days} days")
             return job_count
         
         except Exception as e:
             logger.error(f"Error scraping {country} for {period_days} days: {str(e)}")
-            # Use fallback data when an error occurs
-            self.use_fallback = True
-            job_count = self.generate_fallback_job_count(country, period_days)
-            logger.info(f"Using fallback data: {job_count} jobs in {country} for last {period_days} days")
-            return job_count
+            return -1
     
     def scrape_remote_vs_onsite(self, country: str) -> Dict[str, int]:
         """
@@ -449,26 +410,16 @@ class GlassdoorScraper:
             country: Country name to search in
             
         Returns:
-            Dictionary with remote and on-site job counts
+            Dictionary with remote and on-site job counts or -1 values if data cannot be found
         """
         logger.info(f"Scraping remote vs on-site {JOB_TITLE} jobs in {country}")
         
         country_config = COUNTRY_CONFIGS.get(country)
         if not country_config:
             logger.error(f"No configuration found for country: {country}")
-            return {"remote": 0, "on_site": 0}
+            return {"remote": -1, "on_site": -1}
         
-        # Check if we need to use fallback data
-        if self.use_fallback:
-            total_jobs = self.generate_fallback_job_count(country, 30)
-            remote_ratio = country_config.get("remote_ratio", 0.3)
-            remote_count = int(total_jobs * remote_ratio)
-            onsite_count = total_jobs - remote_count
-            
-            logger.info(f"Using fallback data: {remote_count} remote jobs and {onsite_count} on-site jobs in {country}")
-            return {"remote": remote_count, "on_site": onsite_count}
-        
-        results = {"remote": 0, "on_site": 0}
+        results = {"remote": -1, "on_site": -1}
         
         try:
             # Use the remote URL from the config
@@ -492,38 +443,26 @@ class GlassdoorScraper:
             # Extract the job count
             remote_count = self.extract_job_count()
             
-            # Check if we need to use fallback data
+            # Check if we couldn't find data
             if remote_count == 0 and ("Just a moment" in self.driver.title or "challenge" in self.driver.current_url):
-                # Use fallback data
-                self.use_fallback = True
-                total_jobs = self.generate_fallback_job_count(country, 30)
-                remote_ratio = country_config.get("remote_ratio", 0.3)
-                remote_count = int(total_jobs * remote_ratio)
-                onsite_count = total_jobs - remote_count
-                
-                logger.info(f"Using fallback data: {remote_count} remote jobs in {country}")
-                return {"remote": remote_count, "on_site": onsite_count}
+                logger.warning(f"Could not retrieve remote job data for {country} (Cloudflare challenge)")
+                return {"remote": -1, "on_site": -1}
             
             logger.info(f"Found {remote_count} remote jobs in {country}")
             results["remote"] = remote_count
             
             # Get total jobs for on-site calculation
             total_jobs = self.scrape_jobs_by_period(country, 30)
-            results["on_site"] = max(0, total_jobs - results["remote"])
+            if total_jobs < 0:
+                results["on_site"] = -1
+            else:
+                results["on_site"] = max(0, total_jobs - results["remote"])
             
             return results
             
         except Exception as e:
             logger.error(f"Error scraping remote jobs for {country}: {str(e)}")
-            # Use fallback data
-            self.use_fallback = True
-            total_jobs = self.generate_fallback_job_count(country, 30)
-            remote_ratio = country_config.get("remote_ratio", 0.3)
-            remote_count = int(total_jobs * remote_ratio)
-            onsite_count = total_jobs - remote_count
-            
-            logger.info(f"Using fallback data: {remote_count} remote jobs and {onsite_count} on-site jobs in {country}")
-            return {"remote": remote_count, "on_site": onsite_count}
+            return {"remote": -1, "on_site": -1}
     
     def scrape_country(self, country: str) -> Dict[str, Any]:
         """
@@ -537,17 +476,14 @@ class GlassdoorScraper:
         """
         logger.info(f"Starting scrape for {country}")
         
-        # Reset fallback flag for each country
-        self.use_fallback = False
-        
-        # Initialize country data
+        # Initialize country data with "Can't find data" indicator (-1)
         country_data = {
             "country": country,
-            "last_24h": 0,
-            "last_7d": 0,
-            "last_30d": 0,
-            "remote": 0,
-            "on_site": 0,
+            "last_24h": -1,
+            "last_7d": -1,
+            "last_30d": -1,
+            "remote": -1,
+            "on_site": -1,
             "job_listings": []
         }
         

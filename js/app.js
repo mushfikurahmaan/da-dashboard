@@ -88,10 +88,10 @@ function displayCountryData(countryName) {
     
     const countryData = jobData.countries[countryName];
     
-    // Update summary cards
-    jobs24hElement.textContent = countryData.last_24h;
-    jobs7dElement.textContent = countryData.last_7d;
-    jobs30dElement.textContent = countryData.last_30d;
+    // Update summary cards with appropriate text based on value
+    jobs24hElement.textContent = countryData.last_24h === -1 ? "Can't find data" : countryData.last_24h;
+    jobs7dElement.textContent = countryData.last_7d === -1 ? "Can't find data" : countryData.last_7d;
+    jobs30dElement.textContent = countryData.last_30d === -1 ? "Can't find data" : countryData.last_30d;
     
     // Render job listings
     renderJobListings(countryData.job_listings);
@@ -200,13 +200,23 @@ function initializeCharts() {
     
     // Country comparison chart
     const countryComparisonCtx = document.getElementById('country-comparison-chart').getContext('2d');
+    
+    // Process data for country comparison, replacing -1 with null for better visualization
+    const countryLabels = Object.keys(jobData.countries);
+    const countryData = Object.values(jobData.countries).map(country => {
+        return country.last_30d === -1 ? null : country.last_30d;
+    });
+    
+    // Check if all values are null/can't find data
+    const allDataMissing = countryData.every(value => value === null);
+    
     countryComparisonChart = new Chart(countryComparisonCtx, {
         type: 'bar',
         data: {
-            labels: Object.keys(jobData.countries),
+            labels: countryLabels,
             datasets: [{
                 label: 'Last 30 Days',
-                data: Object.values(jobData.countries).map(country => country.last_30d),
+                data: countryData,
                 backgroundColor: '#818cf8'
             }]
         },
@@ -225,6 +235,14 @@ function initializeCharts() {
             plugins: {
                 legend: {
                     display: false
+                },
+                title: {
+                    display: allDataMissing,
+                    text: "Can't find data",
+                    color: '#888',
+                    font: {
+                        size: 14
+                    }
                 }
             }
         }
@@ -242,7 +260,25 @@ function updateCharts(countryName) {
     const countryData = jobData.countries[countryName];
     
     // Update Remote vs On-site chart
-    remoteOnsiteChart.data.datasets[0].data = [countryData.remote, countryData.on_site];
+    // If data can't be found, show empty chart
+    if (countryData.remote === -1 || countryData.on_site === -1) {
+        remoteOnsiteChart.data.datasets[0].data = [0, 0];
+        // Add a note to the chart
+        remoteOnsiteChart.options.plugins.title = {
+            display: true,
+            text: "Can't find data",
+            color: '#888',
+            font: {
+                size: 14
+            }
+        };
+    } else {
+        remoteOnsiteChart.data.datasets[0].data = [countryData.remote, countryData.on_site];
+        // Remove the note
+        remoteOnsiteChart.options.plugins.title = {
+            display: false
+        };
+    }
     remoteOnsiteChart.update();
     
     // The country comparison chart already has all countries, doesn't need to be updated
