@@ -464,6 +464,195 @@ class GlassdoorScraper:
             logger.error(f"Error scraping remote jobs for {country}: {str(e)}")
             return {"remote": -1, "on_site": -1}
     
+    def extract_skills_from_text(self, text: str) -> List[str]:
+        """
+        Extract relevant data analyst skills from a text (requirements or job description).
+        
+        Args:
+            text: The text to extract skills from
+            
+        Returns:
+            List of identified skills
+        """
+        common_skills = [
+            "SQL", "Python", "R", "Excel", "Tableau", "Power BI", "SPSS", "SAS",
+            "D3.js", "Java", "Scala", "MATLAB", "Hadoop", "Spark", "AWS", "Azure",
+            "Google Cloud", "MongoDB", "PostgreSQL", "MySQL", "Oracle", "ETL",
+            "Machine Learning", "Deep Learning", "AI", "Statistics", "Pandas",
+            "NumPy", "Scikit-learn", "TensorFlow", "PyTorch", "Jupyter",
+            "Data Visualization", "Data Modeling", "Business Intelligence",
+            "Data Mining", "A/B Testing", "Data Warehousing", "Looker"
+        ]
+        
+        found_skills = []
+        for skill in common_skills:
+            # Using word boundary regex to find whole words
+            pattern = r'\b' + re.escape(skill) + r'\b'
+            if re.search(pattern, text, re.IGNORECASE):
+                found_skills.append(skill)
+                
+        return found_skills
+
+    def scrape_job_listings(self, country: str, days: int = 1) -> List[Dict[str, Any]]:
+        """
+        Scrape job listings for a specific country with the given time period.
+        
+        Args:
+            country: Country name to search in
+            days: Number of days to look back
+            
+        Returns:
+            List of job listings
+        """
+        logger.info(f"Scraping job listings in {country} for the last {days} days")
+        
+        country_config = COUNTRY_CONFIGS.get(country)
+        if not country_config:
+            logger.error(f"No configuration found for country: {country}")
+            return []
+        
+        job_listings = []
+        
+        try:
+            # Construct the URL with filters for the last X days
+            url = f"{country_config['base_url']}?fromAge={days}"
+            
+            # Navigate to the page
+            logger.info(f"Navigating to: {url}")
+            self.driver.get(url)
+            
+            # Wait for page to load
+            self.random_sleep(3, 5)
+            
+            # Handle any popups
+            self.handle_popups()
+            
+            # Wait a bit more and handle Cloudflare
+            self.random_sleep(1, 3)
+            if not self.handle_cloudflare():
+                logger.warning(f"Could not bypass Cloudflare protection when scraping job listings for {country}")
+                return []
+            
+            # Scroll to load more job listings
+            self.scroll_page()
+            
+            # Extract job cards
+            job_cards = self.driver.find_elements(By.CSS_SELECTOR, 
+                                                 ".react-job-listing, .jobCard, .JobCard, [data-test='jobCard'], .css-bkasv9")
+            
+            logger.info(f"Found {len(job_cards)} job cards on page")
+            
+            # Process first few job cards (limit to 5 to avoid taking too long)
+            job_count = 0
+            for card in job_cards[:5]:
+                try:
+                    # Extract basic info from the card
+                    title_element = card.find_element(By.CSS_SELECTOR, 
+                                                     ".jobTitle, [data-test='job-title'], .css-1h9muxz")
+                    company_element = card.find_element(By.CSS_SELECTOR, 
+                                                       ".company, [data-test='employer-name'], .css-8wag7q")
+                    location_element = card.find_element(By.CSS_SELECTOR, 
+                                                        ".location, [data-test='location'], .css-1buaf54")
+                    title = title_element.text
+                    company = company_element.text
+                    location = location_element.text
+                    
+                    # Extract the link
+                    link_element = card.find_element(By.CSS_SELECTOR, "a") 
+                    job_url = link_element.get_attribute("href")
+                    
+                    # Try to extract the posted date (this might be challenging as formats vary)
+                    try:
+                        posted_date = card.find_element(By.CSS_SELECTOR, 
+                                                      ".jobAge, [data-test='job-age'], .css-1vfyk4g").text
+                    except:
+                        posted_date = "1d ago"  # Default to 1 day as we're filtering by days
+                    
+                    # Try to get more details by clicking on the job
+                    try:
+                        card.click()
+                        self.random_sleep(2, 3)
+                        
+                        # Extract job details from the right panel
+                        job_description = ""
+                        job_requirements = ""
+                        job_responsibilities = ""
+                        salary = "N/A"
+                        
+                        # Try to extract salary
+                        try:
+                            salary_element = self.driver.find_element(By.CSS_SELECTOR, 
+                                                                  ".salary, [data-test='detailSalary'], .css-1bluz6i")
+                            salary = salary_element.text
+                        except:
+                            pass
+                        
+                        # Try to extract description sections
+                        try:
+                            description_element = self.driver.find_element(By.CSS_SELECTOR, 
+                                                                       ".jobDescriptionContent, [data-test='jobDescriptionText'], .css-1k5huso")
+                            job_description = description_element.text
+                            
+                            # Extract requirements and responsibilities from description
+                            lines = job_description.split("\n")
+                            current_section = ""
+                            
+                            for line in lines:
+                                lower_line = line.lower()
+                                if "requirements" in lower_line or "qualifications" in lower_line:
+                                    current_section = "requirements"
+                                    job_requirements += line + "\n"
+                                elif "responsibilities" in lower_line or "duties" in lower_line:
+                                    current_section = "responsibilities"
+                                    job_responsibilities += line + "\n"
+                                elif current_section == "requirements" and line.strip():
+                                    job_requirements += line + "\n"
+                                elif current_section == "responsibilities" and line.strip():
+                                    job_responsibilities += line + "\n"
+                            
+                            # If we couldn't extract specific sections, use the whole description
+                            if not job_requirements:
+                                job_requirements = job_description[:300] + "..."
+                            if not job_responsibilities:
+                                job_responsibilities = job_description[:300] + "..."
+                        except:
+                            job_requirements = "No detailed requirements available"
+                            job_responsibilities = "No detailed responsibilities available"
+                        
+                        # Extract skills from requirements and description
+                        skills = self.extract_skills_from_text(job_requirements + " " + job_description)
+                        
+                        # Create job listing object
+                        job_listing = {
+                            "title": title,
+                            "company": company,
+                            "location": location,
+                            "salary": salary,
+                            "posted_date": posted_date,
+                            "description": job_description[:300] + "..." if len(job_description) > 300 else job_description,
+                            "requirements": job_requirements[:300] + "..." if len(job_requirements) > 300 else job_requirements,
+                            "responsibilities": job_responsibilities[:300] + "..." if len(job_responsibilities) > 300 else job_responsibilities,
+                            "skills": skills,
+                            "link": job_url
+                        }
+                        
+                        job_listings.append(job_listing)
+                        job_count += 1
+                        logger.info(f"Successfully scraped job listing: {title} at {company}")
+                    
+                    except Exception as e:
+                        logger.warning(f"Error extracting details for job {title}: {str(e)}")
+                
+                except Exception as e:
+                    logger.warning(f"Error processing job card: {str(e)}")
+            
+            logger.info(f"Successfully scraped {job_count} job listings for {country}")
+            return job_listings
+            
+        except Exception as e:
+            logger.error(f"Error scraping job listings for {country}: {str(e)}")
+            return []
+
     def scrape_country(self, country: str) -> Dict[str, Any]:
         """
         Scrape all job data for a specific country.
@@ -496,6 +685,10 @@ class GlassdoorScraper:
         remote_onsite = self.scrape_remote_vs_onsite(country)
         country_data["remote"] = remote_onsite["remote"]
         country_data["on_site"] = remote_onsite["on_site"]
+        
+        # Scrape job listings for the last 24 hours
+        job_listings = self.scrape_job_listings(country, days=1)
+        country_data["job_listings"] = job_listings
         
         logger.info(f"Completed scrape for {country}: {country_data}")
         return country_data

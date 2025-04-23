@@ -110,9 +110,15 @@ function renderJobListings(listings) {
     }
     
     // Filter to show only jobs from the last 24 hours
-    const last24HoursJobs = listings.filter(job => job.posted_date.includes('1d') || job.posted_date.includes('0d') || 
-                                               job.posted_date.includes('hours') || job.posted_date.includes('hour') || 
-                                               job.posted_date.includes('just now'));
+    const last24HoursJobs = listings.filter(job => 
+        job.posted_date.includes('1d') || 
+        job.posted_date.includes('0d') || 
+        job.posted_date.includes('hours') || 
+        job.posted_date.includes('hour') || 
+        job.posted_date.includes('just now') ||
+        job.posted_date.includes('minutes') ||
+        job.posted_date.includes('minute')
+    );
     
     if (last24HoursJobs.length === 0) {
         jobListingsElement.innerHTML = '<div class="text-gray-500">No job listings available from the last 24 hours</div>';
@@ -127,8 +133,16 @@ function renderJobListings(listings) {
         // Check if the job is remote
         const isRemote = job.location.toLowerCase().includes('remote');
         
-        // All jobs shown are recent (within last 24 hours)
-        const isRecent = true;
+        // Build the skills HTML
+        const skillsHtml = job.skills && job.skills.length > 0 
+            ? `
+            <div class="mt-4">
+                <h4 class="font-medium text-gray-900">Skills:</h4>
+                <div class="flex flex-wrap gap-1 mt-1">
+                    ${job.skills.map(skill => `<span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded">${skill}</span>`).join('')}
+                </div>
+            </div>`
+            : '';
         
         jobCard.innerHTML = `
             <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-2">
@@ -146,8 +160,10 @@ function renderJobListings(listings) {
             
             <div class="mb-3">
                 ${isRemote ? '<span class="job-tag job-tag-remote">Remote</span>' : '<span class="job-tag job-tag-onsite">On-site</span>'}
-                ${isRecent ? '<span class="job-tag job-tag-recent">Recent</span>' : ''}
+                <span class="job-tag job-tag-recent">Recent</span>
             </div>
+            
+            ${skillsHtml}
             
             <div class="mt-4">
                 <h4 class="font-medium text-gray-900">Requirements:</h4>
@@ -224,6 +240,13 @@ function initializeCharts() {
             responsive: true,
             maintainAspectRatio: false,
             scales: {
+                x: {
+                    ticks: {
+                        autoSkip: false,
+                        maxRotation: 0,
+                        minRotation: 0
+                    }
+                },
                 y: {
                     beginAtZero: true,
                     title: {
