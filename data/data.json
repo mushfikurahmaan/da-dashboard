@@ -2,49 +2,576 @@
   "countries": {
     "Canada": {
       "country": "Canada",
-      "last_24h": 79,
-      "last_7d": 271,
-      "last_30d": 791,
-      "remote": 773,
-      "on_site": 18,
-      "job_listings": []
+      "last_24h": -1,
+      "last_7d": 247,
+      "last_30d": -1,
+      "remote": 774,
+      "on_site": 13,
+      "job_listings": [
+        {
+          "title": "Analyst Business Support",
+          "company": "Unknown Company",
+          "skills": [
+            "Industry Experience"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Financial Data Analyst",
+          "company": "Unknown Company",
+          "skills": [
+            "Industry Experience"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Sr. Data Analyst, FP&A",
+          "company": "Unknown Company",
+          "skills": [
+            "Industry Experience"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Career Opportunities: Business Analyst (J51042) (4041)",
+          "company": "Unknown Company",
+          "skills": [
+            "Industry Experience"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Data Analyst, Assessment and Academic Success - School of Medicine",
+          "company": "Unknown Company",
+          "skills": [
+            "Industry Experience"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Business Analyst",
+          "company": "Unknown Company",
+          "skills": [
+            "Industry Experience"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Data Analyst",
+          "company": "Unknown Company",
+          "skills": [
+            "Industry Experience"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Casual Data Analyst, Biosciences",
+          "company": "Unknown Company",
+          "skills": [
+            "Industry Experience"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Poultry Reporting and Data Analyst",
+          "company": "Unknown Company",
+          "skills": [
+            "Industry Experience"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Attn: University/College Students - Disputes Analyst, Data Analytics, Data Entry",
+          "company": "Unknown Company",
+          "skills": [
+            "Industry Experience"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Mainframe Application Support Analyst",
+          "company": "Unknown Company",
+          "skills": [
+            "Industry Experience"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Senior Data Systems Analyst",
+          "company": "Unknown Company",
+          "skills": [
+            "Industry Experience"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Senior Business Systems Analyst",
+          "company": "Unknown Company",
+          "skills": [
+            "Industry Experience"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Business Solution Analyst",
+          "company": "Unknown Company",
+          "skills": [
+            "Industry Experience"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Business System Analyst",
+          "company": "Unknown Company",
+          "skills": [
+            "Industry Experience"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Analyst, Business Intelligence",
+          "company": "Unknown Company",
+          "skills": [
+            "Industry Experience"
+          ],
+          "link": ""
+        },
+        {
+          "title": "GenAI Technical Analyst",
+          "company": "Unknown Company",
+          "skills": [
+            "Industry Experience"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Marketing Analyst",
+          "company": "Unknown Company",
+          "skills": [
+            "Industry Experience"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Senior IT Business Analyst",
+          "company": "Unknown Company",
+          "skills": [
+            "Industry Experience"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Workforce Analyst",
+          "company": "Unknown Company",
+          "skills": [
+            "Industry Experience"
+          ],
+          "link": ""
+        }
+      ]
     },
     "Ireland": {
       "country": "Ireland",
-      "last_24h": 9,
-      "last_7d": 30,
-      "last_30d": 117,
-      "remote": 73,
-      "on_site": 44,
-      "job_listings": []
+      "last_24h": 7,
+      "last_7d": 25,
+      "last_30d": 107,
+      "remote": 71,
+      "on_site": 35,
+      "job_listings": [
+        {
+          "title": "Portfolio Analyst - 12 Month FTC",
+          "company": "Unknown Company",
+          "skills": [],
+          "link": ""
+        },
+        {
+          "title": "Sales Operations and MI Analyst",
+          "company": "Unknown Company",
+          "skills": [],
+          "link": ""
+        },
+        {
+          "title": "Control & Reporting Analyst",
+          "company": "Unknown Company",
+          "skills": [],
+          "link": ""
+        },
+        {
+          "title": "Senior Quantitative Risk Analyst",
+          "company": "Unknown Company",
+          "skills": [],
+          "link": ""
+        },
+        {
+          "title": "Global Risk Review Analyst",
+          "company": "Unknown Company",
+          "skills": [],
+          "link": ""
+        },
+        {
+          "title": "Senior Data Analyst",
+          "company": "Unknown Company",
+          "skills": [],
+          "link": ""
+        },
+        {
+          "title": "Cloud BI Sales Specialist, Google Cloud (French, English)",
+          "company": "Unknown Company",
+          "skills": [],
+          "link": ""
+        }
+      ]
     },
     "Portugal": {
       "country": "Portugal",
-      "last_24h": 17,
-      "last_7d": 76,
-      "last_30d": 307,
-      "remote": 191,
-      "on_site": 116,
-      "job_listings": []
+      "last_24h": 11,
+      "last_7d": 57,
+      "last_30d": 299,
+      "remote": 188,
+      "on_site": 111,
+      "job_listings": [
+        {
+          "title": "Data Protection Specialist",
+          "company": "Unknown Company",
+          "skills": [
+            "AI",
+            "Teams",
+            "Communication"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Business Analyst (NetSuite Technical)",
+          "company": "Unknown Company",
+          "skills": [
+            "AI",
+            "Teams",
+            "Communication"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Product Manager",
+          "company": "Unknown Company",
+          "skills": [
+            "AI",
+            "Teams",
+            "Communication"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Data Engineer - Infrastructure",
+          "company": "Unknown Company",
+          "skills": [
+            "AI",
+            "Teams",
+            "Communication"
+          ],
+          "link": ""
+        },
+        {
+          "title": "QA Engineer SFCC Back-End (Fashion)",
+          "company": "Unknown Company",
+          "skills": [
+            "AI",
+            "Teams",
+            "Communication"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Data analyst Tax Digitalisation",
+          "company": "Unknown Company",
+          "skills": [
+            "AI",
+            "Teams",
+            "Communication"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Sr. Associate Supply Chain -Data & Analytics",
+          "company": "Unknown Company",
+          "skills": [
+            "AI",
+            "Teams",
+            "Communication"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Procurement Category Manager - HR, Professional Services and other costs",
+          "company": "Unknown Company",
+          "skills": [
+            "AI",
+            "Teams",
+            "Communication"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Specialist IS Business Systems Analyst - Planisware",
+          "company": "Unknown Company",
+          "skills": [
+            "AI",
+            "Teams",
+            "Communication"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Traded Risk Data Analyst",
+          "company": "Unknown Company",
+          "skills": [
+            "AI",
+            "Teams",
+            "Communication"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Consultant, Advisors \u2013 Strategic & Analytics Consulting",
+          "company": "Unknown Company",
+          "skills": [
+            "AI",
+            "Teams",
+            "Communication"
+          ],
+          "link": ""
+        }
+      ]
     },
     "United Arab Emirates": {
       "country": "United Arab Emirates",
-      "last_24h": 6,
-      "last_7d": 39,
-      "last_30d": 116,
-      "remote": 12,
-      "on_site": 104,
-      "job_listings": []
+      "last_24h": 4,
+      "last_7d": 30,
+      "last_30d": 112,
+      "remote": 10,
+      "on_site": 102,
+      "job_listings": [
+        {
+          "title": "Business Analyst - MIS & Projects",
+          "company": "Unknown Company",
+          "skills": [
+            "Teams",
+            "Business",
+            "Collaboration"
+          ],
+          "link": ""
+        },
+        {
+          "title": "IT User Support Analyst (UAE National)",
+          "company": "Unknown Company",
+          "skills": [
+            "Teams",
+            "Business",
+            "Collaboration"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Senior Data Analyst (with DeFi & Database Expertise)",
+          "company": "Unknown Company",
+          "skills": [
+            "Teams",
+            "Business",
+            "Collaboration"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Root Cause Reporting Specialist",
+          "company": "Unknown Company",
+          "skills": [
+            "Teams",
+            "Business",
+            "Collaboration"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Data Analytics - Data Science - Insurance TPA",
+          "company": "Unknown Company",
+          "skills": [
+            "Teams",
+            "Business",
+            "Collaboration"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Data Scientist Machine Learner",
+          "company": "Unknown Company",
+          "skills": [
+            "Teams",
+            "Business",
+            "Collaboration"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Lab Instructor - Data Science",
+          "company": "Unknown Company",
+          "skills": [
+            "Teams",
+            "Business",
+            "Collaboration"
+          ],
+          "link": ""
+        },
+        {
+          "title": "DATA SCIENTIST - Dubai, UAE",
+          "company": "Unknown Company",
+          "skills": [
+            "Teams",
+            "Business",
+            "Collaboration"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Data Analyst",
+          "company": "Unknown Company",
+          "skills": [
+            "Teams",
+            "Business",
+            "Collaboration"
+          ],
+          "link": ""
+        }
+      ]
     },
     "Germany": {
       "country": "Germany",
-      "last_24h": 16,
-      "last_7d": 82,
-      "last_30d": 405,
-      "remote": 269,
-      "on_site": 136,
-      "job_listings": []
+      "last_24h": 20,
+      "last_7d": 65,
+      "last_30d": 395,
+      "remote": 270,
+      "on_site": 125,
+      "job_listings": [
+        {
+          "title": "Business Analyst (m/f/d)",
+          "company": "Unknown Company",
+          "skills": [],
+          "link": ""
+        },
+        {
+          "title": "(Junior) Developer SEA (f/m/d)",
+          "company": "Unknown Company",
+          "skills": [],
+          "link": ""
+        },
+        {
+          "title": "Principal Financial Planning Analyst",
+          "company": "Unknown Company",
+          "skills": [],
+          "link": ""
+        },
+        {
+          "title": "Product Manager",
+          "company": "Unknown Company",
+          "skills": [],
+          "link": ""
+        },
+        {
+          "title": "Junior Data Analyst (w/m/d) E-Commerce",
+          "company": "Unknown Company",
+          "skills": [],
+          "link": ""
+        },
+        {
+          "title": "UN Women: Finance Analyst, PSRS, Bonn, P-2",
+          "company": "Unknown Company",
+          "skills": [],
+          "link": ""
+        },
+        {
+          "title": "Bilingual (Spanish/English) Digital Marketing Analyst Intern",
+          "company": "Unknown Company",
+          "skills": [],
+          "link": ""
+        },
+        {
+          "title": "QA Engineer (f/m/d)",
+          "company": "Unknown Company",
+          "skills": [],
+          "link": ""
+        },
+        {
+          "title": "Data Analyst/Consultant - Fokus Power BI (m/w/d)",
+          "company": "Unknown Company",
+          "skills": [],
+          "link": ""
+        },
+        {
+          "title": "ETRM Allegro Business Analyst (all genders)",
+          "company": "Unknown Company",
+          "skills": [],
+          "link": ""
+        },
+        {
+          "title": "Controller / Data Analyst (m/w/d)",
+          "company": "Unknown Company",
+          "skills": [],
+          "link": ""
+        },
+        {
+          "title": "Product Marketing Senior Manager (Go-to-Market)",
+          "company": "Unknown Company",
+          "skills": [],
+          "link": ""
+        },
+        {
+          "title": "Senior Solution Engineer (f/m/d)",
+          "company": "Unknown Company",
+          "skills": [],
+          "link": ""
+        },
+        {
+          "title": "GL Accountant",
+          "company": "Unknown Company",
+          "skills": [],
+          "link": ""
+        },
+        {
+          "title": "Senior Investment Analyst - EMEA Separate Accounts",
+          "company": "Unknown Company",
+          "skills": [],
+          "link": ""
+        },
+        {
+          "title": "Working Student: Data Analyst - Marketing & Digitalization (f/m/div)",
+          "company": "Unknown Company",
+          "skills": [],
+          "link": ""
+        },
+        {
+          "title": "(Junior) Developer SEA (w/m/d)",
+          "company": "Unknown Company",
+          "skills": [],
+          "link": ""
+        },
+        {
+          "title": "Associate Technology Consultant - Galaxy Graduate Program (MUNICH)",
+          "company": "Unknown Company",
+          "skills": [],
+          "link": ""
+        },
+        {
+          "title": "Data Engineer Informatica Cloud (w/m/d)",
+          "company": "Unknown Company",
+          "skills": [],
+          "link": ""
+        },
+        {
+          "title": "Supply Chain Network Analyst (w/m/d)",
+          "company": "Unknown Company",
+          "skills": [],
+          "link": ""
+        }
+      ]
     }
   },
-  "last_updated": "2025-04-23T19:15:49Z"
+  "last_updated": "2025-04-24T23:28:30Z"
 }
