@@ -587,40 +587,137 @@ class GlassdoorScraper:
             # Scroll to load more job listings
             self.scroll_page()
             
-            # Extract job cards
-            job_cards = self.driver.find_elements(By.CSS_SELECTOR, 
-                                                 ".react-job-listing, .jobCard, .JobCard, [data-test='jobCard'], .css-bkasv9")
+            # Updated selectors for the new Glassdoor UI
+            job_card_selectors = [
+                ".react-job-listing", 
+                ".jobCard", 
+                ".JobCard",
+                "[data-test='jobCard']",
+                ".css-bkasv9",
+                ".JobsList_jobListItem__8HcYA",
+                ".JobsList_normJobListItem__eCZRH",
+                "[data-test='job-list-item']",
+                "[data-id*='job-list-item']", 
+                "li[id^='job_']"
+            ]
+            
+            # Try each selector to find job cards
+            job_cards = []
+            for selector in job_card_selectors:
+                job_cards = self.driver.find_elements(By.CSS_SELECTOR, selector)
+                if job_cards:
+                    logger.info(f"Found {len(job_cards)} job cards using selector: {selector}")
+                    break
+            
+            if not job_cards:
+                logger.warning(f"Could not find any job cards on the page for {country}")
+                return []
             
             logger.info(f"Found {len(job_cards)} job cards on page")
             
-            # Process first few job cards (limit to 5 to avoid taking too long)
+            # Process first 10 job cards
             job_count = 0
-            for card in job_cards[:5]:
+            for card in job_cards[:10]:
                 try:
-                    # Extract basic info from the card
-                    title_element = card.find_element(By.CSS_SELECTOR, 
-                                                     ".jobTitle, [data-test='job-title'], .css-1h9muxz")
-                    company_element = card.find_element(By.CSS_SELECTOR, 
-                                                       ".company, [data-test='employer-name'], .css-8wag7q")
-                    location_element = card.find_element(By.CSS_SELECTOR, 
-                                                        ".location, [data-test='location'], .css-1buaf54")
-                    title = title_element.text
-                    company = company_element.text
-                    location = location_element.text
+                    # Updated selectors for job title
+                    title_selectors = [
+                        ".jobTitle", 
+                        "[data-test='job-title']", 
+                        ".css-1h9muxz",
+                        ".JobCard_jobTitle__TrVlK",
+                        "h2[data-test='job-title']",
+                        "a[data-test='job-link']",
+                        "h3.JobCard_jobTitle__y5tR_",
+                        ".heading_Heading__BqX5J"
+                    ]
                     
-                    # Extract the link
-                    link_element = card.find_element(By.CSS_SELECTOR, "a") 
-                    job_url = link_element.get_attribute("href")
+                    # Updated selectors for company name
+                    company_selectors = [
+                        ".company", 
+                        "[data-test='employer-name']", 
+                        ".css-8wag7q",
+                        ".JobCard_companyInfo__mfQii",
+                        ".JobCard_companyName__lwjW4",
+                        "div[data-test='employer-name']",
+                        ".EmployerProfile_employerNameHeading__bXBYr h4"
+                    ]
                     
-                    # Try to extract the posted date (this might be challenging as formats vary)
+                    # Updated selectors for location
+                    location_selectors = [
+                        ".location", 
+                        "[data-test='location']", 
+                        ".css-1buaf54",
+                        ".JobCard_location__N_iYE",
+                        "div[data-test='location']",
+                        ".JobDetails_locationAndPay__XGFmY div[data-test='location']"
+                    ]
+                    
+                    # Function to try multiple selectors
+                    def get_element_text(selectors, default=""):
+                        for selector in selectors:
+                            try:
+                                elements = card.find_elements(By.CSS_SELECTOR, selector)
+                                for element in elements:
+                                    if element.is_displayed() and element.text.strip():
+                                        return element.text.strip()
+                            except:
+                                continue
+                        
+                        # If we couldn't find with card-level search, try after clicking
+                        return default
+                    
+                    # Extract basic info with fallbacks
+                    title = get_element_text(title_selectors, "Data Analyst")
+                    company = get_element_text(company_selectors, "Unknown Company")
+                    location = get_element_text(location_selectors, "Unknown Location")
+                    
+                    # Extract the link - try multiple approaches
+                    job_url = ""
                     try:
-                        posted_date = card.find_element(By.CSS_SELECTOR, 
-                                                      ".jobAge, [data-test='job-age'], .css-1vfyk4g").text
+                        # Try to find a direct link in the card
+                        link_elements = card.find_elements(By.CSS_SELECTOR, "a")
+                        for link in link_elements:
+                            href = link.get_attribute("href")
+                            if href and ("job-details" in href or "Job-View" in href or "/job/" in href):
+                                job_url = href
+                                break
+                        
+                        # If no direct link found, use the card's id or data attribute
+                        if not job_url:
+                            job_id = card.get_attribute("id") or card.get_attribute("data-id")
+                            if job_id:
+                                # Construct a URL based on the job ID if available
+                                job_url = f"https://www.glassdoor.com/job-listing/{job_id}"
                     except:
-                        posted_date = "1d ago"  # Default to 1 day as we're filtering by days
+                        # Fallback to the current page URL
+                        job_url = self.driver.current_url
+                    
+                    # Try to extract the posted date
+                    posted_date = "1d ago"  # Default
+                    try:
+                        date_selectors = [
+                            ".jobAge", 
+                            "[data-test='job-age']", 
+                            ".css-1vfyk4g",
+                            ".JobCard_listingAge__KuaxZ",
+                            "div[data-test='listing-age']"
+                        ]
+                        
+                        for selector in date_selectors:
+                            try:
+                                elements = card.find_elements(By.CSS_SELECTOR, selector)
+                                for element in elements:
+                                    if element.is_displayed() and element.text.strip():
+                                        posted_date = element.text.strip()
+                                        break
+                            except:
+                                continue
+                    except:
+                        pass
                     
                     # Try to get more details by clicking on the job
                     try:
+                        # Click on the card to view details
                         card.click()
                         self.random_sleep(2, 3)
                         
@@ -630,43 +727,79 @@ class GlassdoorScraper:
                         job_responsibilities = ""
                         salary = "N/A"
                         
-                        # Try to extract salary
+                        # Updated selectors for salary
                         try:
-                            salary_element = self.driver.find_element(By.CSS_SELECTOR, 
-                                                                  ".salary, [data-test='detailSalary'], .css-1bluz6i")
-                            salary = salary_element.text
+                            salary_selectors = [
+                                ".salary", 
+                                "[data-test='detailSalary']", 
+                                ".css-1bluz6i",
+                                ".JobDetails_salary__vV6I5",
+                                "div[data-test='salary-estimate']",
+                                ".EmployerProfile_employerSalary__iqxvh",
+                                ".JobDetails_locationAndPay__XGFmY span"
+                            ]
+                            
+                            for selector in salary_selectors:
+                                salary_elements = self.driver.find_elements(By.CSS_SELECTOR, selector)
+                                for element in salary_elements:
+                                    if element.is_displayed() and element.text.strip():
+                                        salary = element.text.strip()
+                                        break
                         except:
                             pass
                         
-                        # Try to extract description sections
+                        # Updated selectors for job description
                         try:
-                            description_element = self.driver.find_element(By.CSS_SELECTOR, 
-                                                                       ".jobDescriptionContent, [data-test='jobDescriptionText'], .css-1k5huso")
-                            job_description = description_element.text
+                            description_selectors = [
+                                ".jobDescriptionContent", 
+                                "[data-test='jobDescriptionText']", 
+                                ".css-1k5huso",
+                                ".JobDetails_jobDescription__uW_fK",
+                                "div[data-test='job-description']"
+                            ]
+                            
+                            for selector in description_selectors:
+                                description_elements = self.driver.find_elements(By.CSS_SELECTOR, selector)
+                                for element in description_elements:
+                                    if element.is_displayed() and element.text.strip():
+                                        job_description = element.text.strip()
+                                        break
                             
                             # Extract requirements and responsibilities from description
-                            lines = job_description.split("\n")
-                            current_section = ""
-                            
-                            for line in lines:
-                                lower_line = line.lower()
-                                if "requirements" in lower_line or "qualifications" in lower_line:
-                                    current_section = "requirements"
-                                    job_requirements += line + "\n"
-                                elif "responsibilities" in lower_line or "duties" in lower_line:
-                                    current_section = "responsibilities"
-                                    job_responsibilities += line + "\n"
-                                elif current_section == "requirements" and line.strip():
-                                    job_requirements += line + "\n"
-                                elif current_section == "responsibilities" and line.strip():
-                                    job_responsibilities += line + "\n"
-                            
-                            # If we couldn't extract specific sections, use the whole description
-                            if not job_requirements:
-                                job_requirements = job_description[:300] + "..."
-                            if not job_responsibilities:
-                                job_responsibilities = job_description[:300] + "..."
-                        except:
+                            if job_description:
+                                lines = job_description.split("\n")
+                                current_section = ""
+                                
+                                for line in lines:
+                                    lower_line = line.lower()
+                                    
+                                    # Check for requirements section markers
+                                    if any(x in lower_line for x in ["requirements", "qualifications", "what you'll need", 
+                                                                     "what makes you", "strong candidate", "about you",
+                                                                     "skills and experience", "what we're looking for"]):
+                                        current_section = "requirements"
+                                        job_requirements += line + "\n"
+                                    
+                                    # Check for responsibilities section markers
+                                    elif any(x in lower_line for x in ["responsibilities", "duties", "what you'll do", 
+                                                                       "what you'll be doing", "day to day", 
+                                                                       "job duties", "your role", "the role"]):
+                                        current_section = "responsibilities"
+                                        job_responsibilities += line + "\n"
+                                    
+                                    # Add line to current section
+                                    elif current_section == "requirements" and line.strip():
+                                        job_requirements += line + "\n"
+                                    elif current_section == "responsibilities" and line.strip():
+                                        job_responsibilities += line + "\n"
+                                
+                                # If we couldn't extract specific sections, use the whole description
+                                if not job_requirements:
+                                    job_requirements = job_description[:300] + "..."
+                                if not job_responsibilities:
+                                    job_responsibilities = job_description[:300] + "..."
+                        except Exception as e:
+                            logger.warning(f"Error extracting job description: {str(e)}")
                             job_requirements = "No detailed requirements available"
                             job_responsibilities = "No detailed responsibilities available"
                         
