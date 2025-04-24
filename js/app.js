@@ -15,7 +15,7 @@ const lastUpdatedElement = document.getElementById('last-updated');
 const jobs24hElement = document.getElementById('jobs-24h');
 const jobs7dElement = document.getElementById('jobs-7d');
 const jobs30dElement = document.getElementById('jobs-30d');
-const jobListingsElement = document.getElementById('job-listings');
+const skillsContainerElement = document.getElementById('skills-container');
 
 /**
  * Initialize the dashboard
@@ -93,97 +93,134 @@ function displayCountryData(countryName) {
     jobs7dElement.textContent = countryData.last_7d === -1 ? "Can't find data" : countryData.last_7d;
     jobs30dElement.textContent = countryData.last_30d === -1 ? "Can't find data" : countryData.last_30d;
     
-    // Render job listings
-    renderJobListings(countryData.job_listings);
+    // Display skills from job listings
+    displaySkills(countryData.job_listings);
 }
 
 /**
- * Render job listings for the selected country
+ * Display skills from job listings, sorted by frequency
  */
-function renderJobListings(listings) {
-    // Clear existing listings
-    jobListingsElement.innerHTML = '';
+function displaySkills(listings) {
+    // Clear existing skills
+    skillsContainerElement.innerHTML = '';
     
     if (!listings || listings.length === 0) {
-        jobListingsElement.innerHTML = '<div class="text-gray-500">No job listings available</div>';
+        skillsContainerElement.innerHTML = '<div class="text-gray-500">No skills data available</div>';
         return;
     }
     
-    // Filter to show only jobs from the last 24 hours
-    const last24HoursJobs = listings.filter(job => 
-        job.posted_date.includes('1d') || 
-        job.posted_date.includes('0d') || 
-        job.posted_date.includes('hours') || 
-        job.posted_date.includes('hour') || 
-        job.posted_date.includes('just now') ||
-        job.posted_date.includes('minutes') ||
-        job.posted_date.includes('minute')
+    // Collect all skills from job listings
+    const skillsCount = {};
+    
+    listings.forEach(job => {
+        if (job.skills && Array.isArray(job.skills) && job.skills.length > 0) {
+            job.skills.forEach(skill => {
+                if (skill) {
+                    skillsCount[skill] = (skillsCount[skill] || 0) + 1;
+                }
+            });
+        }
+    });
+    
+    // Convert to array for sorting
+    const sortedSkills = Object.entries(skillsCount)
+        .sort((a, b) => b[1] - a[1]) // Sort by count in descending order
+        .map(([skill, count]) => ({ skill, count }));
+    
+    if (sortedSkills.length === 0) {
+        skillsContainerElement.innerHTML = '<div class="text-gray-500">No skills data available</div>';
+        return;
+    }
+    
+    // Create a container for organized skills
+    const skillsContainer = document.createElement('div');
+    skillsContainer.className = 'w-full';
+    
+    // Define skill categories
+    const technicalSkills = [
+        "SQL", "Python", "R", "Excel", "Tableau", "Power BI", "SPSS", "SAS",
+        "D3.js", "Java", "Scala", "MATLAB", "Hadoop", "Spark", "AWS", "Azure",
+        "Google Cloud", "MongoDB", "PostgreSQL", "MySQL", "Oracle", "ETL",
+        "Machine Learning", "Deep Learning", "AI", "Statistics", "Pandas",
+        "NumPy", "Scikit-learn", "TensorFlow", "PyTorch", "Jupyter",
+        "Data Visualization", "Data Modeling", "Business Intelligence",
+        "Data Mining", "A/B Testing", "Data Warehousing", "Looker",
+        "Snowflake", "Redshift", "BigQuery", "Alteryx", "SSRS", "SSIS",
+        "DAX", "Power Query", "VBA", "Qlik", "Cognos", "Teradata",
+        "Informatica", "DataOps", "MLOps", "PowerPoint", "Word", "Outlook",
+        "SharePoint", "Teams", "Jira", "Confluence", "Git", "GitHub", "GitLab",
+        "NoSQL", "Airflow", "dbt", "Data Quality", "JSON", "XML", "API",
+        "REST", "SOAP", "Flask", "Django", "FastAPI"
+    ];
+    
+    const educationSkills = [
+        "Bachelor's Degree", "Master's Degree", "PhD", "MBA",
+        "Bachelor", "Master", "Doctorate", "BSc", "MSc",
+        "BS", "MS", "Computer Science", "Statistics", "Mathematics",
+        "Information Technology", "Data Science", "Economics", "Business",
+        "Engineering", "Quantitative Field", "Degree"
+    ];
+    
+    // Filter skills by category
+    const technicalSkillsFound = sortedSkills.filter(item => 
+        technicalSkills.includes(item.skill)
     );
     
-    if (last24HoursJobs.length === 0) {
-        jobListingsElement.innerHTML = '<div class="text-gray-500">No job listings available from the last 24 hours</div>';
-        return;
+    const educationSkillsFound = sortedSkills.filter(item => 
+        educationSkills.includes(item.skill) || 
+        /degree|bachelor|master|phd|msc|bsc/i.test(item.skill)
+    );
+    
+    const softSkillsFound = sortedSkills.filter(item => 
+        !technicalSkills.includes(item.skill) && 
+        !educationSkills.includes(item.skill) && 
+        !/degree|bachelor|master|phd|msc|bsc/i.test(item.skill)
+    );
+    
+    // Function to create a skill category section
+    function createSkillSection(title, skills, colorClass) {
+        if (skills.length === 0) return '';
+        
+        const section = document.createElement('div');
+        section.className = 'mb-6';
+        
+        const heading = document.createElement('h3');
+        heading.className = 'font-medium text-gray-800 mb-3';
+        heading.textContent = title;
+        section.appendChild(heading);
+        
+        const skillsWrapper = document.createElement('div');
+        skillsWrapper.className = 'flex flex-wrap gap-2';
+        
+        skills.forEach(({ skill, count }) => {
+            const skillTag = document.createElement('div');
+            skillTag.className = `skill-tag px-3 py-2 ${colorClass} rounded-lg text-sm font-medium`;
+            skillTag.innerHTML = `
+                <span>${skill}</span>
+                <span class="ml-2 px-2 py-1 bg-opacity-50 rounded-full text-xs">${count}</span>
+            `;
+            skillsWrapper.appendChild(skillTag);
+        });
+        
+        section.appendChild(skillsWrapper);
+        return section;
     }
     
-    // Create job cards for each listing
-    last24HoursJobs.forEach(job => {
-        const jobCard = document.createElement('div');
-        jobCard.className = 'job-card bg-white border border-gray-200 p-4 rounded-lg shadow-sm fade-in';
-        
-        // Check if the job is remote
-        const isRemote = job.location.toLowerCase().includes('remote');
-        
-        // Build the skills HTML
-        const skillsHtml = job.skills && job.skills.length > 0 
-            ? `
-            <div class="mt-4">
-                <h4 class="font-medium text-gray-900">Skills:</h4>
-                <div class="flex flex-wrap gap-1 mt-1">
-                    ${job.skills.map(skill => `<span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded">${skill}</span>`).join('')}
-                </div>
-            </div>`
-            : '';
-        
-        jobCard.innerHTML = `
-            <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-2">
-                <div>
-                    <h3 class="text-lg font-semibold text-gray-900">${job.title}</h3>
-                    <p class="text-gray-700">${job.company}</p>
-                </div>
-                <div class="mt-2 md:mt-0 text-sm text-gray-500">${job.posted_date}</div>
-            </div>
-            
-            <div class="mb-2">
-                <p class="text-gray-600">${job.location}</p>
-                ${job.salary !== 'N/A' ? `<p class="salary mt-1">${job.salary}</p>` : ''}
-            </div>
-            
-            <div class="mb-3">
-                ${isRemote ? '<span class="job-tag job-tag-remote">Remote</span>' : '<span class="job-tag job-tag-onsite">On-site</span>'}
-                <span class="job-tag job-tag-recent">Recent</span>
-            </div>
-            
-            ${skillsHtml}
-            
-            <div class="mt-4">
-                <h4 class="font-medium text-gray-900">Requirements:</h4>
-                <p class="text-gray-600 text-sm mt-1">${job.requirements}</p>
-            </div>
-            
-            <div class="mt-4">
-                <h4 class="font-medium text-gray-900">Responsibilities:</h4>
-                <p class="text-gray-600 text-sm mt-1">${job.responsibilities}</p>
-            </div>
-            
-            <div class="mt-4">
-                <a href="${job.link}" target="_blank" class="inline-block px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-colors">
-                    View Job
-                </a>
-            </div>
-        `;
-        
-        jobListingsElement.appendChild(jobCard);
-    });
+    // Add sections to container
+    skillsContainer.appendChild(
+        createSkillSection('Technical Skills', technicalSkillsFound, 'bg-blue-100 text-blue-800')
+    );
+    
+    skillsContainer.appendChild(
+        createSkillSection('Education Requirements', educationSkillsFound, 'bg-purple-100 text-purple-800')
+    );
+    
+    skillsContainer.appendChild(
+        createSkillSection('Other Skills & Qualifications', softSkillsFound, 'bg-green-100 text-green-800')
+    );
+    
+    // Add the container to the DOM
+    skillsContainerElement.appendChild(skillsContainer);
 }
 
 /**

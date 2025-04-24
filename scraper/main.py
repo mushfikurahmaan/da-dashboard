@@ -474,23 +474,74 @@ class GlassdoorScraper:
         Returns:
             List of identified skills
         """
-        common_skills = [
+        # Technical skills for data analyst roles
+        technical_skills = [
             "SQL", "Python", "R", "Excel", "Tableau", "Power BI", "SPSS", "SAS",
             "D3.js", "Java", "Scala", "MATLAB", "Hadoop", "Spark", "AWS", "Azure",
             "Google Cloud", "MongoDB", "PostgreSQL", "MySQL", "Oracle", "ETL",
             "Machine Learning", "Deep Learning", "AI", "Statistics", "Pandas",
             "NumPy", "Scikit-learn", "TensorFlow", "PyTorch", "Jupyter",
             "Data Visualization", "Data Modeling", "Business Intelligence",
-            "Data Mining", "A/B Testing", "Data Warehousing", "Looker"
+            "Data Mining", "A/B Testing", "Data Warehousing", "Looker",
+            "Snowflake", "Redshift", "BigQuery", "Alteryx", "SSRS", "SSIS",
+            "DAX", "Power Query", "VBA", "Qlik", "Cognos", "Teradata",
+            "Informatica", "DataOps", "MLOps", "PowerPoint", "Word", "Outlook",
+            "SharePoint", "Teams", "Jira", "Confluence", "Git", "GitHub", "GitLab",
+            "NoSQL", "Airflow", "dbt", "Data Quality", "JSON", "XML", "API",
+            "REST", "SOAP", "Flask", "Django", "FastAPI", "Data Pipelines",
+            "Google Analytics", "Power Platform", "Databricks", "Talend"
         ]
         
+        # Education requirements
+        education_requirements = [
+            "Bachelor's Degree", "Master's Degree", "PhD", "MBA",
+            "Bachelor", "Master", "Doctorate", "BSc", "MSc",
+            "BS", "MS", "Computer Science", "Statistics", "Mathematics",
+            "Information Technology", "Data Science", "Economics", "Business",
+            "Engineering", "Quantitative Field", "Degree"
+        ]
+        
+        # Soft skills and other qualifications
+        soft_skills = [
+            "Communication", "Teamwork", "Problem Solving", "Analytical Thinking",
+            "Critical Thinking", "Attention to Detail", "Time Management",
+            "Project Management", "Leadership", "Collaboration", "Presentation",
+            "Storytelling", "Decision Making", "Self-motivated", "Adaptability",
+            "Creativity", "Organization", "Multitasking", "Prioritization",
+            "Verbal Communication", "Written Communication", "Customer Service",
+            "Business Acumen", "Domain Knowledge", "Industry Experience",
+            "Agile", "Scrum", "Stakeholder Management", "Requirements Gathering"
+        ]
+        
+        # Combine all skills lists
+        all_skills = technical_skills + education_requirements + soft_skills
+        
+        # Case-insensitive skill detection (whole words only)
         found_skills = []
-        for skill in common_skills:
+        for skill in all_skills:
             # Using word boundary regex to find whole words
             pattern = r'\b' + re.escape(skill) + r'\b'
             if re.search(pattern, text, re.IGNORECASE):
+                # Always add the skill with its original case
                 found_skills.append(skill)
                 
+        # Special cases for education requirements with variations
+        degree_patterns = [
+            r"\b[Bb]achelor'?s?\s+[Dd]egree\b",
+            r"\b[Bb][Ss][Cc]\b",
+            r"\b[Mm]aster'?s?\s+[Dd]egree\b",
+            r"\b[Mm][Ss][Cc]\b",
+            r"\b[Pp][Hh][Dd]\b",
+            r"\b[Dd]octoral\s+[Dd]egree\b",
+            r"\b[Dd]egree\s+in\s+[A-Za-z\s]+\b"
+        ]
+        
+        for pattern in degree_patterns:
+            if re.search(pattern, text):
+                match = re.search(pattern, text)
+                if match and match.group(0) not in found_skills:
+                    found_skills.append(match.group(0))
+                    
         return found_skills
 
     def scrape_job_listings(self, country: str, days: int = 1) -> List[Dict[str, Any]]:
