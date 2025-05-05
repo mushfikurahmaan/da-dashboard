@@ -2,205 +2,329 @@
   "countries": {
     "Canada": {
       "country": "Canada",
-      "last_24h": 3,
-      "last_7d": -1,
-      "last_30d": -1,
-      "remote": 806,
+      "last_24h": 45,
+      "last_7d": 285,
+      "last_30d": 768,
+      "remote": 792,
       "on_site": 0,
       "job_listings": [
         {
-          "title": "business systems analyst",
+          "title": "Product Manager / Business Analyst (Computer Services Officer 4)",
           "company": "Unknown Company",
-          "skills": [
-            "Bachelor's Degree",
-            "Bachelor",
-            "Business",
-            "Degree",
-            "Bachelor's degree"
-          ],
+          "skills": [],
           "link": ""
         },
         {
-          "title": "database analyst",
+          "title": "Inventory & Cost Analyst",
           "company": "Unknown Company",
-          "skills": [
-            "Bachelor's Degree",
-            "Bachelor",
-            "Business",
-            "Degree",
-            "Bachelor's degree"
-          ],
+          "skills": [],
           "link": ""
         },
         {
-          "title": "HEALTHCARE BUSINESS ANALYST",
+          "title": "Bank operation analyst (Mandarin speaking)",
           "company": "Unknown Company",
-          "skills": [
-            "Bachelor's Degree",
-            "Bachelor",
-            "Business",
-            "Degree",
-            "Bachelor's degree"
-          ],
+          "skills": [],
           "link": ""
         },
         {
-          "title": "Family Physician",
+          "title": "Senior Data Analyst",
           "company": "Unknown Company",
-          "skills": [
-            "Bachelor's Degree",
-            "Bachelor",
-            "Business",
-            "Degree",
-            "Bachelor's degree"
-          ],
+          "skills": [],
           "link": ""
         },
         {
-          "title": "Forms and Data Specialist",
+          "title": "Business Intelligence Analyst",
           "company": "Unknown Company",
-          "skills": [
-            "Bachelor's Degree",
-            "Bachelor",
-            "Business",
-            "Degree",
-            "Bachelor's degree"
-          ],
+          "skills": [],
           "link": ""
         },
         {
-          "title": "Data Research & Entry Specialist",
+          "title": "LP Analyst",
           "company": "Unknown Company",
-          "skills": [
-            "Bachelor's Degree",
-            "Bachelor",
-            "Business",
-            "Degree",
-            "Bachelor's degree"
-          ],
+          "skills": [],
           "link": ""
         },
         {
-          "title": "Sr SAP Solution Designer",
+          "title": "iCasino Operations Analyst",
           "company": "Unknown Company",
-          "skills": [
-            "Bachelor's Degree",
-            "Bachelor",
-            "Business",
-            "Degree",
-            "Bachelor's degree"
-          ],
+          "skills": [],
           "link": ""
         },
         {
-          "title": "Data Analytical Specialist Scientist (Junior) 8480-1109",
+          "title": "Lead, Manufacturing Analyst",
           "company": "Unknown Company",
-          "skills": [
-            "Bachelor's Degree",
-            "Bachelor",
-            "Business",
-            "Degree",
-            "Bachelor's degree"
-          ],
+          "skills": [],
+          "link": ""
+        },
+        {
+          "title": "Business Analyst II - Payvider, Pharmacy Implementation",
+          "company": "Unknown Company",
+          "skills": [],
+          "link": ""
+        },
+        {
+          "title": "Data Analyst (Co-Op)",
+          "company": "Unknown Company",
+          "skills": [],
+          "link": ""
+        },
+        {
+          "title": "Business Intelligence Analyst",
+          "company": "Unknown Company",
+          "skills": [],
+          "link": ""
+        },
+        {
+          "title": "Offensive Data and Research Analyst",
+          "company": "Unknown Company",
+          "skills": [],
+          "link": ""
+        },
+        {
+          "title": "Business Analyst Intern/ Co-op",
+          "company": "Unknown Company",
+          "skills": [],
+          "link": ""
+        },
+        {
+          "title": "Commercial Analyst",
+          "company": "Unknown Company",
+          "skills": [],
+          "link": ""
+        },
+        {
+          "title": "Executive Assistant & Data Analyst",
+          "company": "Unknown Company",
+          "skills": [],
+          "link": ""
+        },
+        {
+          "title": "Sr Business Analyst",
+          "company": "Unknown Company",
+          "skills": [],
+          "link": ""
+        },
+        {
+          "title": "Operations Analyst",
+          "company": "Unknown Company",
+          "skills": [],
+          "link": ""
+        },
+        {
+          "title": "Business Analyst Co-op - Fall 2025",
+          "company": "Unknown Company",
+          "skills": [],
+          "link": ""
+        },
+        {
+          "title": "Fraud Analyst",
+          "company": "Unknown Company",
+          "skills": [],
+          "link": ""
+        },
+        {
+          "title": "Velocity - Data Analyst Internship/Co-Op - Fall 2025",
+          "company": "Unknown Company",
+          "skills": [],
           "link": ""
         }
       ]
     },
     "Ireland": {
       "country": "Ireland",
-      "last_24h": 0,
-      "last_7d": 41,
-      "last_30d": 114,
-      "remote": 74,
-      "on_site": -1,
+      "last_24h": 1442,
+      "last_7d": 37,
+      "last_30d": 112,
+      "remote": 72,
+      "on_site": 40,
       "job_listings": [
+        {
+          "title": "Data Analytics & AI - Senior Manager - Data Architect",
+          "company": "Unknown Company",
+          "skills": [
+            "AI",
+            "Teams",
+            "Business"
+          ],
+          "link": ""
+        },
         {
           "title": "Data Scientist/Analyst",
           "company": "Unknown Company",
-          "skills": [],
+          "skills": [
+            "AI",
+            "Teams",
+            "Business"
+          ],
           "link": ""
         },
         {
           "title": "Data Engineer",
           "company": "Unknown Company",
-          "skills": [],
+          "skills": [
+            "AI",
+            "Teams",
+            "Business"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Data Analyst - Risk & Strategy",
+          "company": "Unknown Company",
+          "skills": [
+            "AI",
+            "Teams",
+            "Business"
+          ],
           "link": ""
         },
         {
           "title": "Data Scientist",
           "company": "Unknown Company",
-          "skills": [],
+          "skills": [
+            "AI",
+            "Teams",
+            "Business"
+          ],
           "link": ""
         },
         {
-          "title": "Data Scientist",
+          "title": "Data Scientist Apprenticeship Programme",
           "company": "Unknown Company",
-          "skills": [],
+          "skills": [
+            "AI",
+            "Teams",
+            "Business"
+          ],
           "link": ""
         }
       ]
     },
     "Portugal": {
       "country": "Portugal",
-      "last_24h": 2,
-      "last_7d": 55,
-      "last_30d": 242,
+      "last_24h": 10,
+      "last_7d": 59,
+      "last_30d": 255,
       "remote": 186,
-      "on_site": 57,
+      "on_site": 69,
       "job_listings": [
         {
-          "title": "Junior SQL Dveloper (Liquid) - Libon OR Porto",
+          "title": "Power BI Consultant",
           "company": "Unknown Company",
           "skills": [
-            "Business"
+            "Bachelor",
+            "Computer Science",
+            "Business",
+            "Degree",
+            "degree in Computer Science"
           ],
           "link": ""
         },
         {
-          "title": "Banking Sector | Java Developer (Hybrid)",
+          "title": "VIE Operational Readiness Analyst",
           "company": "Unknown Company",
           "skills": [
-            "Business"
+            "Bachelor",
+            "Computer Science",
+            "Business",
+            "Degree",
+            "degree in Computer Science"
           ],
           "link": ""
         },
         {
-          "title": "Junior Data Analyst",
+          "title": "Software Engineer - Customer Success",
           "company": "Unknown Company",
           "skills": [
-            "Business"
+            "Bachelor",
+            "Computer Science",
+            "Business",
+            "Degree",
+            "degree in Computer Science"
           ],
           "link": ""
         },
         {
-          "title": "Medical writer life science",
+          "title": "Analyst, Quality Assurance",
           "company": "Unknown Company",
           "skills": [
-            "Business"
+            "Bachelor",
+            "Computer Science",
+            "Business",
+            "Degree",
+            "degree in Computer Science"
           ],
           "link": ""
         },
         {
-          "title": "Summer Internships | Data Engineer Trainee (m/f/d)",
+          "title": "RPA Developer | Financial Services | Lisboa/Porto",
           "company": "Unknown Company",
           "skills": [
-            "Business"
+            "Bachelor",
+            "Computer Science",
+            "Business",
+            "Degree",
+            "degree in Computer Science"
           ],
           "link": ""
         },
         {
-          "title": "Portuguese Internet Search Quality Rater",
+          "title": "Senior Consultant - SOC Analyst - Lisboa/Porto",
           "company": "Unknown Company",
           "skills": [
-            "Business"
+            "Bachelor",
+            "Computer Science",
+            "Business",
+            "Degree",
+            "degree in Computer Science"
           ],
           "link": ""
         },
         {
-          "title": "Data Science Mastermind",
+          "title": "Data Quality Engineer",
           "company": "Unknown Company",
           "skills": [
-            "Business"
+            "Bachelor",
+            "Computer Science",
+            "Business",
+            "Degree",
+            "degree in Computer Science"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Chief Java Software Engineer",
+          "company": "Unknown Company",
+          "skills": [
+            "Bachelor",
+            "Computer Science",
+            "Business",
+            "Degree",
+            "degree in Computer Science"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Java Team Lead",
+          "company": "Unknown Company",
+          "skills": [
+            "Bachelor",
+            "Computer Science",
+            "Business",
+            "Degree",
+            "degree in Computer Science"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Business Analyst/Tester | Banking Sector | Lisboa",
+          "company": "Unknown Company",
+          "skills": [
+            "Bachelor",
+            "Computer Science",
+            "Business",
+            "Degree",
+            "degree in Computer Science"
           ],
           "link": ""
         }
@@ -208,57 +332,171 @@
     },
     "United Arab Emirates": {
       "country": "United Arab Emirates",
-      "last_24h": 862,
-      "last_7d": 34,
-      "last_30d": 103,
+      "last_24h": 9,
+      "last_7d": 35,
+      "last_30d": 106,
       "remote": 11,
-      "on_site": 92,
+      "on_site": 95,
       "job_listings": [
         {
-          "title": "Financial Analyst",
+          "title": "Data Analyst- Mail Plan",
           "company": "Unknown Company",
           "skills": [
-            "Business"
+            "SQL",
+            "Excel",
+            "Tableau",
+            "Power BI",
+            "Data Visualization",
+            "Business Intelligence",
+            "Power Query",
+            "VBA",
+            "Teams",
+            "Business",
+            "Attention to Detail"
           ],
           "link": ""
         },
         {
-          "title": "Data Analytics - Data Science - Insurance TPA",
+          "title": "Senior Business Analyst \u2013 Healthcare",
           "company": "Unknown Company",
           "skills": [
-            "Business"
+            "SQL",
+            "Excel",
+            "Tableau",
+            "Power BI",
+            "Data Visualization",
+            "Business Intelligence",
+            "Power Query",
+            "VBA",
+            "Teams",
+            "Business",
+            "Attention to Detail"
           ],
           "link": ""
         },
         {
-          "title": "Data Scientist Machine Learner",
+          "title": "Data Analyst",
           "company": "Unknown Company",
           "skills": [
-            "Business"
+            "SQL",
+            "Excel",
+            "Tableau",
+            "Power BI",
+            "Data Visualization",
+            "Business Intelligence",
+            "Power Query",
+            "VBA",
+            "Teams",
+            "Business",
+            "Attention to Detail"
           ],
           "link": ""
         },
         {
-          "title": "Satellite Data Specialist",
+          "title": "Business Intelligence Analyst",
           "company": "Unknown Company",
           "skills": [
-            "Business"
+            "SQL",
+            "Excel",
+            "Tableau",
+            "Power BI",
+            "Data Visualization",
+            "Business Intelligence",
+            "Power Query",
+            "VBA",
+            "Teams",
+            "Business",
+            "Attention to Detail"
           ],
           "link": ""
         },
         {
-          "title": "Lab Instructor - Data Science",
+          "title": "QA Analyst",
           "company": "Unknown Company",
           "skills": [
-            "Business"
+            "SQL",
+            "Excel",
+            "Tableau",
+            "Power BI",
+            "Data Visualization",
+            "Business Intelligence",
+            "Power Query",
+            "VBA",
+            "Teams",
+            "Business",
+            "Attention to Detail"
           ],
           "link": ""
         },
         {
-          "title": "AI Data Science Trainer",
+          "title": "Bank Rating Analyst",
           "company": "Unknown Company",
           "skills": [
-            "Business"
+            "SQL",
+            "Excel",
+            "Tableau",
+            "Power BI",
+            "Data Visualization",
+            "Business Intelligence",
+            "Power Query",
+            "VBA",
+            "Teams",
+            "Business",
+            "Attention to Detail"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Finance Business Partner, MENA Finance",
+          "company": "Unknown Company",
+          "skills": [
+            "SQL",
+            "Excel",
+            "Tableau",
+            "Power BI",
+            "Data Visualization",
+            "Business Intelligence",
+            "Power Query",
+            "VBA",
+            "Teams",
+            "Business",
+            "Attention to Detail"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Business Analyst, Supply chain",
+          "company": "Unknown Company",
+          "skills": [
+            "SQL",
+            "Excel",
+            "Tableau",
+            "Power BI",
+            "Data Visualization",
+            "Business Intelligence",
+            "Power Query",
+            "VBA",
+            "Teams",
+            "Business",
+            "Attention to Detail"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Techno-Functional Analyst - RCO (ALM/IRRBB)",
+          "company": "Unknown Company",
+          "skills": [
+            "SQL",
+            "Excel",
+            "Tableau",
+            "Power BI",
+            "Data Visualization",
+            "Business Intelligence",
+            "Power Query",
+            "VBA",
+            "Teams",
+            "Business",
+            "Attention to Detail"
           ],
           "link": ""
         }
@@ -266,54 +504,174 @@
     },
     "Germany": {
       "country": "Germany",
-      "last_24h": 0,
+      "last_24h": 28,
       "last_7d": 102,
-      "last_30d": 367,
-      "remote": 269,
-      "on_site": 98,
+      "last_30d": 383,
+      "remote": 265,
+      "on_site": 119,
       "job_listings": [
         {
-          "title": "Data Science Analyst (m/w/d)",
+          "title": "Data Engineer/Analyst (gn)",
           "company": "Unknown Company",
           "skills": [
-            "Master"
+            "Project Management"
           ],
           "link": ""
         },
         {
-          "title": "Intern Data Science / Rolls-Royce Motor Cars (f/m/x)",
+          "title": "Business Analyst, Trustworthy Shopping Experience",
           "company": "Unknown Company",
           "skills": [
-            "Master"
+            "Project Management"
           ],
           "link": ""
         },
         {
-          "title": "Working Student - Data Science",
+          "title": "Business Analyst (w/m/d)",
           "company": "Unknown Company",
           "skills": [
-            "Master"
+            "Project Management"
           ],
           "link": ""
         },
         {
-          "title": "Data Science Consultant - QuantumBlack, AI by McKinsey",
+          "title": "Program Manager III, Materials Management, Cloud Supply Chain",
           "company": "Unknown Company",
           "skills": [
-            "Master"
+            "Project Management"
           ],
           "link": ""
         },
         {
-          "title": "Data Science Working Student (m/f/d)",
+          "title": "Working Student: Business Analyst (m/f/x)",
           "company": "Unknown Company",
           "skills": [
-            "Master"
+            "Project Management"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Business Analyst Digitalisierungsprojekte (m/w/d)",
+          "company": "Unknown Company",
+          "skills": [
+            "Project Management"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Senior Data Analyst - FTC 6 months",
+          "company": "Unknown Company",
+          "skills": [
+            "Project Management"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Purchasing Business Analyst (Non Production Material) (m/f/d)",
+          "company": "Unknown Company",
+          "skills": [
+            "Project Management"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Data Analyst - Digital Marketing (M/W/D)",
+          "company": "Unknown Company",
+          "skills": [
+            "Project Management"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Investment Analyst Real Estate (m/f/d)",
+          "company": "Unknown Company",
+          "skills": [
+            "Project Management"
+          ],
+          "link": ""
+        },
+        {
+          "title": "DATA ANALYST:IN IM CONTROLLING (M/W/D) - HAMBURG",
+          "company": "Unknown Company",
+          "skills": [
+            "Project Management"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Reporting Specialist / Data Analyst Media Business und Editorial (m/w/d)",
+          "company": "Unknown Company",
+          "skills": [
+            "Project Management"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Working Student Corporate Finance - Investor Relations (f/m/x)",
+          "company": "Unknown Company",
+          "skills": [
+            "Project Management"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Junior Data Analyst - Rechnungswesen (m/w/d)",
+          "company": "Unknown Company",
+          "skills": [
+            "Project Management"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Praktikant:in Data Analyst (gn)",
+          "company": "Unknown Company",
+          "skills": [
+            "Project Management"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Data Analyst:in",
+          "company": "Unknown Company",
+          "skills": [
+            "Project Management"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Logistics Expert als Business Analyst (m/w/d) eCommerce & Non Food - Lager",
+          "company": "Unknown Company",
+          "skills": [
+            "Project Management"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Controller/ Data Analyst \u2013 Zahlenkurier (m/w/d)",
+          "company": "Unknown Company",
+          "skills": [
+            "Project Management"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Werkstudent (m/w/d) Group IT",
+          "company": "Unknown Company",
+          "skills": [
+            "Project Management"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Data Analyst (m/w/d)",
+          "company": "Unknown Company",
+          "skills": [
+            "Project Management"
           ],
           "link": ""
         }
       ]
     }
   },
-  "last_updated": "2025-05-04T23:27:59Z"
+  "last_updated": "2025-05-05T23:28:37Z"
 }
