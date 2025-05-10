@@ -2,133 +2,25 @@
   "countries": {
     "Canada": {
       "country": "Canada",
-      "last_24h": -1,
-      "last_7d": 291,
-      "last_30d": 835,
-      "remote": 880,
+      "last_24h": 32,
+      "last_7d": 300,
+      "last_30d": 830,
+      "remote": 896,
       "on_site": 0,
       "job_listings": [
         {
-          "title": "SharePoint Business Analyst",
+          "title": "Actuarial Analyst II",
           "company": "Unknown Company",
           "skills": [
-            "Teams",
-            "Business",
-            "Requirements Gathering"
+            "Business"
           ],
           "link": ""
         },
         {
-          "title": "Sr. Business Systems Analyst, TD Securities",
+          "title": "Business Insights Analyst I",
           "company": "Unknown Company",
           "skills": [
-            "Teams",
-            "Business",
-            "Requirements Gathering"
-          ],
-          "link": ""
-        },
-        {
-          "title": "Analyst, Business Improvement",
-          "company": "Unknown Company",
-          "skills": [
-            "Teams",
-            "Business",
-            "Requirements Gathering"
-          ],
-          "link": ""
-        },
-        {
-          "title": "Business Analyst",
-          "company": "Unknown Company",
-          "skills": [
-            "Teams",
-            "Business",
-            "Requirements Gathering"
-          ],
-          "link": ""
-        },
-        {
-          "title": "Data Analyst, Autonomy",
-          "company": "Unknown Company",
-          "skills": [
-            "Teams",
-            "Business",
-            "Requirements Gathering"
-          ],
-          "link": ""
-        },
-        {
-          "title": "Power BI Developer \u2013 UX-Focused",
-          "company": "Unknown Company",
-          "skills": [
-            "Teams",
-            "Business",
-            "Requirements Gathering"
-          ],
-          "link": ""
-        },
-        {
-          "title": "Business Intelligence Engineer II - American Football",
-          "company": "Unknown Company",
-          "skills": [
-            "Teams",
-            "Business",
-            "Requirements Gathering"
-          ],
-          "link": ""
-        },
-        {
-          "title": "Senior Business Data Analyst",
-          "company": "Unknown Company",
-          "skills": [
-            "Teams",
-            "Business",
-            "Requirements Gathering"
-          ],
-          "link": ""
-        },
-        {
-          "title": "IT Business Analyst",
-          "company": "Unknown Company",
-          "skills": [
-            "Teams",
-            "Business",
-            "Requirements Gathering"
-          ],
-          "link": ""
-        },
-        {
-          "title": "Business Central ERP Application Analyst",
-          "company": "Unknown Company",
-          "skills": [
-            "Teams",
-            "Business",
-            "Requirements Gathering"
-          ],
-          "link": ""
-        }
-      ]
-    },
-    "Ireland": {
-      "country": "Ireland",
-      "last_24h": 14,
-      "last_7d": 41,
-      "last_30d": 120,
-      "remote": 71,
-      "on_site": 49,
-      "job_listings": [
-        {
-          "title": "Workflow Analyst, RCO",
-          "company": "Unknown Company",
-          "skills": [
-            "Excel",
-            "PowerPoint",
-            "Word",
-            "Outlook",
-            "Communication",
-            "Leadership",
-            "Organization"
+            "Business"
           ],
           "link": ""
         },
@@ -136,69 +28,55 @@
           "title": "Data Analyst",
           "company": "Unknown Company",
           "skills": [
-            "Excel",
-            "PowerPoint",
-            "Word",
-            "Outlook",
-            "Communication",
-            "Leadership",
-            "Organization"
+            "Business"
           ],
           "link": ""
         },
         {
-          "title": "AIML Data Operations Annotation Analyst - French- 12 Month Contract",
+          "title": "Operational Due Diligence Associate Analyst",
           "company": "Unknown Company",
           "skills": [
-            "Excel",
-            "PowerPoint",
-            "Word",
-            "Outlook",
-            "Communication",
-            "Leadership",
-            "Organization"
+            "Business"
           ],
           "link": ""
         },
         {
-          "title": "Data Analytics Systems Engineer",
+          "title": "Data Quality Analyst",
           "company": "Unknown Company",
           "skills": [
-            "Excel",
-            "PowerPoint",
-            "Word",
-            "Outlook",
-            "Communication",
-            "Leadership",
-            "Organization"
+            "Business"
           ],
           "link": ""
         },
         {
-          "title": "Data Analyst - 12-month FTC",
+          "title": "Category Insights & Sales Analyst",
           "company": "Unknown Company",
           "skills": [
-            "Excel",
-            "PowerPoint",
-            "Word",
-            "Outlook",
-            "Communication",
-            "Leadership",
-            "Organization"
+            "Business"
           ],
           "link": ""
         },
         {
-          "title": "Senior Product Analyst (Cupid Media)",
+          "title": "Inventory Analyst / Analyste de l'inventaire",
           "company": "Unknown Company",
           "skills": [
-            "Excel",
-            "PowerPoint",
-            "Word",
-            "Outlook",
-            "Communication",
-            "Leadership",
-            "Organization"
+            "Business"
+          ],
+          "link": ""
+        },
+        {
+          "title": "SAP Master Data Analyst - Plant Maintenance",
+          "company": "Unknown Company",
+          "skills": [
+            "Business"
+          ],
+          "link": ""
+        },
+        {
+          "title": "BI Advanced Analyst II",
+          "company": "Unknown Company",
+          "skills": [
+            "Business"
           ],
           "link": ""
         },
@@ -206,53 +84,75 @@
           "title": "Senior Data Analyst",
           "company": "Unknown Company",
           "skills": [
-            "Excel",
-            "PowerPoint",
-            "Word",
-            "Outlook",
-            "Communication",
+            "Business"
+          ],
+          "link": ""
+        }
+      ]
+    },
+    "Ireland": {
+      "country": "Ireland",
+      "last_24h": 1506,
+      "last_7d": 39,
+      "last_30d": 115,
+      "remote": 70,
+      "on_site": 45,
+      "job_listings": [
+        {
+          "title": "Senior Data Analytics Manager, Product",
+          "company": "Unknown Company",
+          "skills": [
+            "Business",
             "Leadership",
             "Organization"
           ],
           "link": ""
         },
         {
-          "title": "Associate Data Analyst",
+          "title": "Data Science Intern",
           "company": "Unknown Company",
           "skills": [
-            "Excel",
-            "PowerPoint",
-            "Word",
-            "Outlook",
-            "Communication",
+            "Business",
             "Leadership",
             "Organization"
           ],
           "link": ""
         },
         {
-          "title": "Research Data Analytics and IT Systems Officer",
+          "title": "Data Insights",
           "company": "Unknown Company",
           "skills": [
-            "Excel",
-            "PowerPoint",
-            "Word",
-            "Outlook",
-            "Communication",
+            "Business",
             "Leadership",
             "Organization"
           ],
           "link": ""
         },
         {
-          "title": "Senior Data Analyst",
+          "title": "Data Scientist Apprenticeship Programme",
           "company": "Unknown Company",
           "skills": [
-            "Excel",
-            "PowerPoint",
-            "Word",
-            "Outlook",
-            "Communication",
+            "Business",
+            "Leadership",
+            "Organization"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Data Engineer",
+          "company": "Unknown Company",
+          "skills": [
+            "Business",
+            "Leadership",
+            "Organization"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Laboratory Assistant",
+          "company": "Unknown Company",
+          "skills": [
+            "Business",
             "Leadership",
             "Organization"
           ],
@@ -262,208 +162,201 @@
     },
     "Portugal": {
       "country": "Portugal",
-      "last_24h": 18,
-      "last_7d": 94,
-      "last_30d": 278,
+      "last_24h": 1512,
+      "last_7d": 95,
+      "last_30d": 264,
       "remote": 187,
-      "on_site": 91,
+      "on_site": 78,
       "job_listings": [
         {
-          "title": "Data Analyst - Programa de Trainees CTT 2025",
+          "title": "Data & Digital Internship (m/f/x)",
           "company": "Unknown Company",
-          "skills": [],
+          "skills": [
+            "Business",
+            "Engineering"
+          ],
           "link": ""
         },
         {
-          "title": "Consumer Experience Performance Specialist",
+          "title": "Medical writer life science",
           "company": "Unknown Company",
-          "skills": [],
+          "skills": [
+            "Business",
+            "Engineering"
+          ],
           "link": ""
         },
         {
-          "title": "Taxes & Investments Analyst (M/F/D)",
+          "title": "Data Science GenAI",
           "company": "Unknown Company",
-          "skills": [],
+          "skills": [
+            "Business",
+            "Engineering"
+          ],
           "link": ""
         },
         {
-          "title": "Planning Analyst",
+          "title": "Junior Data Analyst",
           "company": "Unknown Company",
-          "skills": [],
+          "skills": [
+            "Business",
+            "Engineering"
+          ],
           "link": ""
         },
         {
-          "title": "Technology Business Management Analyst",
+          "title": "Portuguese Internet Search Quality Rater",
           "company": "Unknown Company",
-          "skills": [],
+          "skills": [
+            "Business",
+            "Engineering"
+          ],
           "link": ""
         },
         {
-          "title": "Data Analyst - Braga",
+          "title": "Data Science Mastermind",
           "company": "Unknown Company",
-          "skills": [],
-          "link": ""
-        },
-        {
-          "title": "Web Data Analyst",
-          "company": "Unknown Company",
-          "skills": [],
-          "link": ""
-        },
-        {
-          "title": "Senior IT Business Analyst",
-          "company": "Unknown Company",
-          "skills": [],
-          "link": ""
-        },
-        {
-          "title": "Senior .Net Developer",
-          "company": "Unknown Company",
-          "skills": [],
-          "link": ""
-        },
-        {
-          "title": "Data Science Associate (Fashion)",
-          "company": "Unknown Company",
-          "skills": [],
+          "skills": [
+            "Business",
+            "Engineering"
+          ],
           "link": ""
         }
       ]
     },
     "United Arab Emirates": {
       "country": "United Arab Emirates",
-      "last_24h": 14,
-      "last_7d": 57,
-      "last_30d": 130,
-      "remote": 17,
-      "on_site": 113,
+      "last_24h": 5,
+      "last_7d": 63,
+      "last_30d": 136,
+      "remote": 18,
+      "on_site": 118,
       "job_listings": [
         {
-          "title": "FP&A Analyst/Finance Business Partner",
+          "title": "Data Analyst",
           "company": "Unknown Company",
-          "skills": [],
+          "skills": [
+            "Excel",
+            "Tableau",
+            "Power BI",
+            "Data Visualization",
+            "Business",
+            "Communication"
+          ],
           "link": ""
         },
         {
-          "title": "SENIOR PERFORMANCE ANALYST",
+          "title": "Specialist \u2013 AML, Transaction Monitoring- UAT & Data Analysis",
           "company": "Unknown Company",
-          "skills": [],
+          "skills": [
+            "Excel",
+            "Tableau",
+            "Power BI",
+            "Data Visualization",
+            "Business",
+            "Communication"
+          ],
           "link": ""
         },
         {
-          "title": "Business Support Analyst",
+          "title": "Personal Assistant to MD",
           "company": "Unknown Company",
-          "skills": [],
+          "skills": [
+            "Excel",
+            "Tableau",
+            "Power BI",
+            "Data Visualization",
+            "Business",
+            "Communication"
+          ],
           "link": ""
         },
         {
-          "title": "Analyst - Technology Fraud Management",
+          "title": "Senior Product Analyst II",
           "company": "Unknown Company",
-          "skills": [],
+          "skills": [
+            "Excel",
+            "Tableau",
+            "Power BI",
+            "Data Visualization",
+            "Business",
+            "Communication"
+          ],
           "link": ""
         },
         {
-          "title": "Test Lead",
+          "title": "Business Analyst, MDS, MENAT",
           "company": "Unknown Company",
-          "skills": [],
-          "link": ""
-        },
-        {
-          "title": "Lead Data Analyst - Dubai",
-          "company": "Unknown Company",
-          "skills": [],
-          "link": ""
-        },
-        {
-          "title": "Placement Analyst - UAE National Only, Inbound Supply Chain",
-          "company": "Unknown Company",
-          "skills": [],
-          "link": ""
-        },
-        {
-          "title": "Salesforce Functional Expert",
-          "company": "Unknown Company",
-          "skills": [],
-          "link": ""
-        },
-        {
-          "title": "Digital Marketing Analyst",
-          "company": "Unknown Company",
-          "skills": [],
+          "skills": [
+            "Excel",
+            "Tableau",
+            "Power BI",
+            "Data Visualization",
+            "Business",
+            "Communication"
+          ],
           "link": ""
         }
       ]
     },
     "Germany": {
       "country": "Germany",
-      "last_24h": 24,
-      "last_7d": 117,
-      "last_30d": 401,
-      "remote": 263,
-      "on_site": 138,
+      "last_24h": 3667,
+      "last_7d": 116,
+      "last_30d": 374,
+      "remote": 260,
+      "on_site": 114,
       "job_listings": [
         {
-          "title": "Data Analyst (m/f/d)",
+          "title": "Digital Campaign Management (Senior) Specialist (f/m/d) for Sales Development",
           "company": "Unknown Company",
-          "skills": [],
+          "skills": [
+            "Collaboration"
+          ],
           "link": ""
         },
         {
-          "title": "Data Analyst Non Food (m/w/d)",
+          "title": "Praktikum Einkauf Data Science & KI",
           "company": "Unknown Company",
-          "skills": [],
+          "skills": [
+            "Collaboration"
+          ],
           "link": ""
         },
         {
-          "title": "Business Analyst \u2212 Store Merchandise Management (m/f/x)",
+          "title": "Data Science Analyst (m/w/d)",
           "company": "Unknown Company",
-          "skills": [],
+          "skills": [
+            "Collaboration"
+          ],
           "link": ""
         },
         {
-          "title": "(Junior) Key Account Manager Italy (m/f/d)",
+          "title": "Praktikum Data Science",
           "company": "Unknown Company",
-          "skills": [],
+          "skills": [
+            "Collaboration"
+          ],
           "link": ""
         },
         {
-          "title": "Analyst Corporate Finance (m/f/d)",
+          "title": "Intern Data Science / Rolls-Royce Motor Cars (f/m/x)",
           "company": "Unknown Company",
-          "skills": [],
+          "skills": [
+            "Collaboration"
+          ],
           "link": ""
         },
         {
-          "title": "Data analyst (f/m/d, No. 219-25)",
+          "title": "Werkstudent (m/w/d) Data Science & Reporting",
           "company": "Unknown Company",
-          "skills": [],
-          "link": ""
-        },
-        {
-          "title": "Principal Data Engineer - Data Management (all genders)",
-          "company": "Unknown Company",
-          "skills": [],
-          "link": ""
-        },
-        {
-          "title": "(Senior) Data Analyst (m/w/d)",
-          "company": "Unknown Company",
-          "skills": [],
-          "link": ""
-        },
-        {
-          "title": "(Junior) Data Engineer",
-          "company": "Unknown Company",
-          "skills": [],
-          "link": ""
-        },
-        {
-          "title": "Product Owner remote (w/m/d)",
-          "company": "Unknown Company",
-          "skills": [],
+          "skills": [
+            "Collaboration"
+          ],
           "link": ""
         }
       ]
     }
   },
-  "last_updated": "2025-05-09T23:26:27Z"
+  "last_updated": "2025-05-10T23:25:56Z"
 }
