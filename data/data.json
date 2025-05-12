@@ -2,123 +2,66 @@
   "countries": {
     "Canada": {
       "country": "Canada",
-      "last_24h": 4,
-      "last_7d": 302,
-      "last_30d": 793,
-      "remote": 897,
-      "on_site": 0,
-      "job_listings": [
-        {
-          "title": "Associate Analyst, Reporting",
-          "company": "Unknown Company",
-          "skills": [],
-          "link": ""
-        },
-        {
-          "title": "Senior Technical Analyst (x3)",
-          "company": "Unknown Company",
-          "skills": [],
-          "link": ""
-        },
-        {
-          "title": "Technical Systems Business Analyst",
-          "company": "Unknown Company",
-          "skills": [],
-          "link": ""
-        },
-        {
-          "title": "HEALTHCARE BUSINESS ANALYST",
-          "company": "Unknown Company",
-          "skills": [],
-          "link": ""
-        },
-        {
-          "title": "North America Laboratory Automation Support Specialist - Canada",
-          "company": "Unknown Company",
-          "skills": [],
-          "link": ""
-        },
-        {
-          "title": "Talent Acquisition Specialist",
-          "company": "Unknown Company",
-          "skills": [],
-          "link": ""
-        },
-        {
-          "title": "Governance & ESG Specialist",
-          "company": "Unknown Company",
-          "skills": [],
-          "link": ""
-        },
-        {
-          "title": "Senior Payroll Specialist",
-          "company": "Unknown Company",
-          "skills": [],
-          "link": ""
-        },
-        {
-          "title": "District Operations Specialist",
-          "company": "Unknown Company",
-          "skills": [],
-          "link": ""
-        }
-      ]
+      "last_24h": 38,
+      "last_7d": -1,
+      "last_30d": -1,
+      "remote": -1,
+      "on_site": -1,
+      "job_listings": []
     },
     "Ireland": {
       "country": "Ireland",
-      "last_24h": 0,
-      "last_7d": 41,
-      "last_30d": 110,
-      "remote": 70,
-      "on_site": 40,
+      "last_24h": 6,
+      "last_7d": 44,
+      "last_30d": 111,
+      "remote": 72,
+      "on_site": -1,
       "job_listings": [
         {
-          "title": "Data Science Intern",
+          "title": "Supply Chain Data Analyst",
           "company": "Unknown Company",
           "skills": [
-            "Teams",
-            "Business",
-            "Organization"
+            "Decision Making"
           ],
           "link": ""
         },
         {
-          "title": "Data Analyst",
+          "title": "SAP Data Analyst",
           "company": "Unknown Company",
           "skills": [
-            "Teams",
-            "Business",
-            "Organization"
+            "Decision Making"
           ],
           "link": ""
         },
         {
-          "title": "Data Insights",
+          "title": "Business Analyst",
           "company": "Unknown Company",
           "skills": [
-            "Teams",
-            "Business",
-            "Organization"
+            "Decision Making"
           ],
           "link": ""
         },
         {
-          "title": "Data Scientist Apprenticeship Programme",
+          "title": "IT Business Analyst - B2B",
           "company": "Unknown Company",
           "skills": [
-            "Teams",
-            "Business",
-            "Organization"
+            "Decision Making"
           ],
           "link": ""
         },
         {
-          "title": "Data Analyst",
+          "title": "Finance Analyst",
           "company": "Unknown Company",
           "skills": [
-            "Teams",
-            "Business",
-            "Organization"
+            "Decision Making"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Business Analyst - Infra/Linux",
+          "company": "Unknown Company",
+          "skills": [
+            "Decision Making"
           ],
           "link": ""
         }
@@ -126,392 +69,337 @@
     },
     "Portugal": {
       "country": "Portugal",
-      "last_24h": 3,
-      "last_7d": 98,
-      "last_30d": 257,
-      "remote": 187,
-      "on_site": 70,
+      "last_24h": 14,
+      "last_7d": 97,
+      "last_30d": 248,
+      "remote": -1,
+      "on_site": -1,
       "job_listings": [
         {
-          "title": "Data Engineer",
+          "title": "Data Governance Analyst",
           "company": "Unknown Company",
-          "skills": [
-            "SQL",
-            "Python",
-            "Java",
-            "Scala",
-            "Spark",
-            "AWS",
-            "Azure",
-            "Machine Learning",
-            "DataOps",
-            "Teams",
-            "Airflow",
-            "dbt",
-            "Data Pipelines",
-            "Databricks",
-            "Business",
-            "Engineering",
-            "Degree",
-            "Communication",
-            "degree in IT"
-          ],
+          "skills": [],
           "link": ""
         },
         {
-          "title": "QA Analystsssssssss",
+          "title": "RFP Analyst",
           "company": "Unknown Company",
-          "skills": [
-            "SQL",
-            "Python",
-            "Java",
-            "Scala",
-            "Spark",
-            "AWS",
-            "Azure",
-            "Machine Learning",
-            "DataOps",
-            "Teams",
-            "Airflow",
-            "dbt",
-            "Data Pipelines",
-            "Databricks",
-            "Business",
-            "Engineering",
-            "Degree",
-            "Communication",
-            "degree in IT"
-          ],
+          "skills": [],
           "link": ""
         },
         {
-          "title": "Mobility Sector | Business Analyst",
+          "title": "Risk Analyst (Portfolio Analytics & Modeling)",
           "company": "Unknown Company",
-          "skills": [
-            "SQL",
-            "Python",
-            "Java",
-            "Scala",
-            "Spark",
-            "AWS",
-            "Azure",
-            "Machine Learning",
-            "DataOps",
-            "Teams",
-            "Airflow",
-            "dbt",
-            "Data Pipelines",
-            "Databricks",
-            "Business",
-            "Engineering",
-            "Degree",
-            "Communication",
-            "degree in IT"
-          ],
+          "skills": [],
           "link": ""
         },
         {
-          "title": "Data Science Associate (Fashion)",
+          "title": "Financial Techno-Economic Analyst",
           "company": "Unknown Company",
-          "skills": [
-            "SQL",
-            "Python",
-            "Java",
-            "Scala",
-            "Spark",
-            "AWS",
-            "Azure",
-            "Machine Learning",
-            "DataOps",
-            "Teams",
-            "Airflow",
-            "dbt",
-            "Data Pipelines",
-            "Databricks",
-            "Business",
-            "Engineering",
-            "Degree",
-            "Communication",
-            "degree in IT"
-          ],
+          "skills": [],
           "link": ""
         },
         {
-          "title": "Medical writer life science",
+          "title": "Credit and Collections Analyst",
           "company": "Unknown Company",
-          "skills": [
-            "SQL",
-            "Python",
-            "Java",
-            "Scala",
-            "Spark",
-            "AWS",
-            "Azure",
-            "Machine Learning",
-            "DataOps",
-            "Teams",
-            "Airflow",
-            "dbt",
-            "Data Pipelines",
-            "Databricks",
-            "Business",
-            "Engineering",
-            "Degree",
-            "Communication",
-            "degree in IT"
-          ],
+          "skills": [],
           "link": ""
         },
         {
-          "title": "Data Science Analyst (Fashion)",
+          "title": "Senior Product Analyst",
           "company": "Unknown Company",
-          "skills": [
-            "SQL",
-            "Python",
-            "Java",
-            "Scala",
-            "Spark",
-            "AWS",
-            "Azure",
-            "Machine Learning",
-            "DataOps",
-            "Teams",
-            "Airflow",
-            "dbt",
-            "Data Pipelines",
-            "Databricks",
-            "Business",
-            "Engineering",
-            "Degree",
-            "Communication",
-            "degree in IT"
-          ],
+          "skills": [],
           "link": ""
         },
         {
-          "title": "Data Science GenAI",
+          "title": "Revenue Intern - Central Europe",
           "company": "Unknown Company",
-          "skills": [
-            "SQL",
-            "Python",
-            "Java",
-            "Scala",
-            "Spark",
-            "AWS",
-            "Azure",
-            "Machine Learning",
-            "DataOps",
-            "Teams",
-            "Airflow",
-            "dbt",
-            "Data Pipelines",
-            "Databricks",
-            "Business",
-            "Engineering",
-            "Degree",
-            "Communication",
-            "degree in IT"
-          ],
+          "skills": [],
           "link": ""
         },
         {
-          "title": "Junior Data Analyst",
+          "title": "Senior Manager Technology \u2013 Commercial Data & Analytics",
           "company": "Unknown Company",
-          "skills": [
-            "SQL",
-            "Python",
-            "Java",
-            "Scala",
-            "Spark",
-            "AWS",
-            "Azure",
-            "Machine Learning",
-            "DataOps",
-            "Teams",
-            "Airflow",
-            "dbt",
-            "Data Pipelines",
-            "Databricks",
-            "Business",
-            "Engineering",
-            "Degree",
-            "Communication",
-            "degree in IT"
-          ],
+          "skills": [],
+          "link": ""
+        },
+        {
+          "title": "Analytics Engineer",
+          "company": "Unknown Company",
+          "skills": [],
+          "link": ""
+        },
+        {
+          "title": "Integration Developer (m/f/d)",
+          "company": "Unknown Company",
+          "skills": [],
+          "link": ""
+        },
+        {
+          "title": "Professional Platform Engineer - Build",
+          "company": "Unknown Company",
+          "skills": [],
+          "link": ""
+        },
+        {
+          "title": "Lead UX Researcher (Mat Cover)",
+          "company": "Unknown Company",
+          "skills": [],
+          "link": ""
+        },
+        {
+          "title": "Growth Product Manager (m / f / d) - Activation",
+          "company": "Unknown Company",
+          "skills": [],
+          "link": ""
+        },
+        {
+          "title": "Senior Product Manager, Authorization",
+          "company": "Unknown Company",
+          "skills": [],
           "link": ""
         }
       ]
     },
     "United Arab Emirates": {
       "country": "United Arab Emirates",
-      "last_24h": 0,
-      "last_7d": 59,
-      "last_30d": 131,
-      "remote": 18,
-      "on_site": 113,
-      "job_listings": [
-        {
-          "title": "Data Analytics - Data Science - Insurance TPA",
-          "company": "Unknown Company",
-          "skills": [
-            "SQL",
-            "Python",
-            "R",
-            "Tableau",
-            "Machine Learning",
-            "Business Intelligence",
-            "Teams",
-            "Bachelor",
-            "Computer Science",
-            "Data Science",
-            "Business",
-            "Communication",
-            "Attention to Detail"
-          ],
-          "link": ""
-        },
-        {
-          "title": "Data Scientist Machine Learner",
-          "company": "Unknown Company",
-          "skills": [
-            "SQL",
-            "Python",
-            "R",
-            "Tableau",
-            "Machine Learning",
-            "Business Intelligence",
-            "Teams",
-            "Bachelor",
-            "Computer Science",
-            "Data Science",
-            "Business",
-            "Communication",
-            "Attention to Detail"
-          ],
-          "link": ""
-        },
-        {
-          "title": "Data Scientist with ML & NLP Experience",
-          "company": "Unknown Company",
-          "skills": [
-            "SQL",
-            "Python",
-            "R",
-            "Tableau",
-            "Machine Learning",
-            "Business Intelligence",
-            "Teams",
-            "Bachelor",
-            "Computer Science",
-            "Data Science",
-            "Business",
-            "Communication",
-            "Attention to Detail"
-          ],
-          "link": ""
-        },
-        {
-          "title": "Data Science Intern",
-          "company": "Unknown Company",
-          "skills": [
-            "SQL",
-            "Python",
-            "R",
-            "Tableau",
-            "Machine Learning",
-            "Business Intelligence",
-            "Teams",
-            "Bachelor",
-            "Computer Science",
-            "Data Science",
-            "Business",
-            "Communication",
-            "Attention to Detail"
-          ],
-          "link": ""
-        },
-        {
-          "title": "Data Analyst",
-          "company": "Unknown Company",
-          "skills": [
-            "SQL",
-            "Python",
-            "R",
-            "Tableau",
-            "Machine Learning",
-            "Business Intelligence",
-            "Teams",
-            "Bachelor",
-            "Computer Science",
-            "Data Science",
-            "Business",
-            "Communication",
-            "Attention to Detail"
-          ],
-          "link": ""
-        }
-      ]
+      "last_24h": 4,
+      "last_7d": 49,
+      "last_30d": 127,
+      "remote": 16,
+      "on_site": 111,
+      "job_listings": []
     },
     "Germany": {
       "country": "Germany",
-      "last_24h": 0,
-      "last_7d": 117,
-      "last_30d": 353,
-      "remote": 259,
-      "on_site": 94,
+      "last_24h": -1,
+      "last_7d": -1,
+      "last_30d": 359,
+      "remote": 256,
+      "on_site": 103,
       "job_listings": [
         {
-          "title": "Werkstudent:in im Bereich Data Science / Machine Learning (m/w/d)",
+          "title": "Junior Data Analyst (m/f/d) Autoteile",
           "company": "Unknown Company",
           "skills": [
-            "Machine Learning",
+            "AI",
             "Teams",
-            "Data Science"
+            "Business",
+            "Agile"
           ],
           "link": ""
         },
         {
-          "title": "Data Science Analyst (m/w/d)",
+          "title": "Data Analyst (m/w/d)",
           "company": "Unknown Company",
           "skills": [
-            "Machine Learning",
+            "AI",
             "Teams",
-            "Data Science"
+            "Business",
+            "Agile"
           ],
           "link": ""
         },
         {
-          "title": "Werkstudent (m/w/d) - Data Science",
+          "title": "Quantitative Analyst (f/m/x)",
           "company": "Unknown Company",
           "skills": [
-            "Machine Learning",
+            "AI",
             "Teams",
-            "Data Science"
+            "Business",
+            "Agile"
           ],
           "link": ""
         },
         {
-          "title": "Praktikum Data Science",
+          "title": "HR Data Analyst (m/w/d)",
           "company": "Unknown Company",
           "skills": [
-            "Machine Learning",
+            "AI",
             "Teams",
-            "Data Science"
+            "Business",
+            "Agile"
           ],
           "link": ""
         },
         {
-          "title": "Data Analyst",
+          "title": "Data-Analyst im Qualit\u00e4tsmanagement (m/w/d)",
           "company": "Unknown Company",
           "skills": [
-            "Machine Learning",
+            "AI",
             "Teams",
-            "Data Science"
+            "Business",
+            "Agile"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Data & Process Analyst - Sales (m/w/d) - befristet",
+          "company": "Unknown Company",
+          "skills": [
+            "AI",
+            "Teams",
+            "Business",
+            "Agile"
+          ],
+          "link": ""
+        },
+        {
+          "title": "BI Analyst (m/w/d)",
+          "company": "Unknown Company",
+          "skills": [
+            "AI",
+            "Teams",
+            "Business",
+            "Agile"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Data Engineer / Business Intelligence Analyst (m/w/d)",
+          "company": "Unknown Company",
+          "skills": [
+            "AI",
+            "Teams",
+            "Business",
+            "Agile"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Data Scientist - Experimentation (all genders)",
+          "company": "Unknown Company",
+          "skills": [
+            "AI",
+            "Teams",
+            "Business",
+            "Agile"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Data Engineer & BI Specialist* (m/w/d)",
+          "company": "Unknown Company",
+          "skills": [
+            "AI",
+            "Teams",
+            "Business",
+            "Agile"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Portfolio Manager/Analyst (f/m/d)",
+          "company": "Unknown Company",
+          "skills": [
+            "AI",
+            "Teams",
+            "Business",
+            "Agile"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Logistics Management Analyst Sr (GS)",
+          "company": "Unknown Company",
+          "skills": [
+            "AI",
+            "Teams",
+            "Business",
+            "Agile"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Senior Financial Analyst, Amazon Logistics Finance",
+          "company": "Unknown Company",
+          "skills": [
+            "AI",
+            "Teams",
+            "Business",
+            "Agile"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Technical Customer Support Analyst",
+          "company": "Unknown Company",
+          "skills": [
+            "AI",
+            "Teams",
+            "Business",
+            "Agile"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Working Student Business Intelligence (all genders)",
+          "company": "Unknown Company",
+          "skills": [
+            "AI",
+            "Teams",
+            "Business",
+            "Agile"
+          ],
+          "link": ""
+        },
+        {
+          "title": "European Retail Search Manager",
+          "company": "Unknown Company",
+          "skills": [
+            "AI",
+            "Teams",
+            "Business",
+            "Agile"
+          ],
+          "link": ""
+        },
+        {
+          "title": "AISG-0350 QA-Engineer Oracle",
+          "company": "Unknown Company",
+          "skills": [
+            "AI",
+            "Teams",
+            "Business",
+            "Agile"
+          ],
+          "link": ""
+        },
+        {
+          "title": "IT SOX Compliance Analyst (m/f/d)",
+          "company": "Unknown Company",
+          "skills": [
+            "AI",
+            "Teams",
+            "Business",
+            "Agile"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Senior Product Manager - Web",
+          "company": "Unknown Company",
+          "skills": [
+            "AI",
+            "Teams",
+            "Business",
+            "Agile"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Growth Product Manager (m / f / d) - Activation",
+          "company": "Unknown Company",
+          "skills": [
+            "AI",
+            "Teams",
+            "Business",
+            "Agile"
           ],
           "link": ""
         }
       ]
     }
   },
-  "last_updated": "2025-05-11T23:27:47Z"
+  "last_updated": "2025-05-12T23:29:49Z"
 }
