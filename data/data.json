@@ -2,34 +2,159 @@
   "countries": {
     "Canada": {
       "country": "Canada",
-      "last_24h": 38,
-      "last_7d": -1,
-      "last_30d": -1,
-      "remote": -1,
-      "on_site": -1,
-      "job_listings": []
-    },
-    "Ireland": {
-      "country": "Ireland",
-      "last_24h": 6,
-      "last_7d": 44,
-      "last_30d": 111,
-      "remote": 72,
-      "on_site": -1,
+      "last_24h": 51,
+      "last_7d": 273,
+      "last_30d": 788,
+      "remote": 859,
+      "on_site": 0,
       "job_listings": [
         {
-          "title": "Supply Chain Data Analyst",
+          "title": "Analyste de donn\u00e9es / Data Analyst/Business Intelligence",
           "company": "Unknown Company",
           "skills": [
-            "Decision Making"
+            "Business Intelligence",
+            "Business",
+            "Attention to Detail"
           ],
           "link": ""
         },
         {
-          "title": "SAP Data Analyst",
+          "title": "Actuarial Analyst II",
           "company": "Unknown Company",
           "skills": [
-            "Decision Making"
+            "Business Intelligence",
+            "Business",
+            "Attention to Detail"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Student, Business Intelligence (40851)",
+          "company": "Unknown Company",
+          "skills": [
+            "Business Intelligence",
+            "Business",
+            "Attention to Detail"
+          ],
+          "link": ""
+        },
+        {
+          "title": "SAP Reporting analyst",
+          "company": "Unknown Company",
+          "skills": [
+            "Business Intelligence",
+            "Business",
+            "Attention to Detail"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Junior Data Analyst, IMT - CSJ role",
+          "company": "Unknown Company",
+          "skills": [
+            "Business Intelligence",
+            "Business",
+            "Attention to Detail"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Data and Process Analyst",
+          "company": "Unknown Company",
+          "skills": [
+            "Business Intelligence",
+            "Business",
+            "Attention to Detail"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Data Analyst II - Digital Analytics",
+          "company": "Unknown Company",
+          "skills": [
+            "Business Intelligence",
+            "Business",
+            "Attention to Detail"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Data Analyst, CAADSI",
+          "company": "Unknown Company",
+          "skills": [
+            "Business Intelligence",
+            "Business",
+            "Attention to Detail"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Data Analyst- Supply Chain",
+          "company": "Unknown Company",
+          "skills": [
+            "Business Intelligence",
+            "Business",
+            "Attention to Detail"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Senior Data/Report Analyst",
+          "company": "Unknown Company",
+          "skills": [
+            "Business Intelligence",
+            "Business",
+            "Attention to Detail"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Associate Analyst - Inventory",
+          "company": "Unknown Company",
+          "skills": [
+            "Business Intelligence",
+            "Business",
+            "Attention to Detail"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Data Analyst - (SAS, SQL and Tableau)- Banking",
+          "company": "Unknown Company",
+          "skills": [
+            "Business Intelligence",
+            "Business",
+            "Attention to Detail"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Senior Data Analyst",
+          "company": "Unknown Company",
+          "skills": [
+            "Business Intelligence",
+            "Business",
+            "Attention to Detail"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Senior Data Analyst, CAADSI",
+          "company": "Unknown Company",
+          "skills": [
+            "Business Intelligence",
+            "Business",
+            "Attention to Detail"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Quality Assurance Analyst I",
+          "company": "Unknown Company",
+          "skills": [
+            "Business Intelligence",
+            "Business",
+            "Attention to Detail"
           ],
           "link": ""
         },
@@ -37,31 +162,212 @@
           "title": "Business Analyst",
           "company": "Unknown Company",
           "skills": [
-            "Decision Making"
+            "Business Intelligence",
+            "Business",
+            "Attention to Detail"
           ],
           "link": ""
         },
         {
-          "title": "IT Business Analyst - B2B",
+          "title": "Methods Analyst",
           "company": "Unknown Company",
           "skills": [
-            "Decision Making"
+            "Business Intelligence",
+            "Business",
+            "Attention to Detail"
           ],
           "link": ""
         },
         {
-          "title": "Finance Analyst",
+          "title": "Analyst, Specialized Care",
           "company": "Unknown Company",
           "skills": [
-            "Decision Making"
+            "Business Intelligence",
+            "Business",
+            "Attention to Detail"
           ],
           "link": ""
         },
         {
-          "title": "Business Analyst - Infra/Linux",
+          "title": "Senior Analyst, Investment Data Solutions",
           "company": "Unknown Company",
           "skills": [
-            "Decision Making"
+            "Business Intelligence",
+            "Business",
+            "Attention to Detail"
+          ],
+          "link": ""
+        },
+        {
+          "title": "database analyst",
+          "company": "Unknown Company",
+          "skills": [
+            "Business Intelligence",
+            "Business",
+            "Attention to Detail"
+          ],
+          "link": ""
+        }
+      ]
+    },
+    "Ireland": {
+      "country": "Ireland",
+      "last_24h": 17,
+      "last_7d": 55,
+      "last_30d": 122,
+      "remote": 73,
+      "on_site": 49,
+      "job_listings": [
+        {
+          "title": "Data Analyst / Report Writer",
+          "company": "Unknown Company",
+          "skills": [
+            "Power BI",
+            "SSRS"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Data and AI Governance Analyst",
+          "company": "Unknown Company",
+          "skills": [
+            "Power BI",
+            "SSRS"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Reporting Data Analyst - Engineering (f/m/d)",
+          "company": "Unknown Company",
+          "skills": [
+            "Power BI",
+            "SSRS"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Senior Data Analyst",
+          "company": "Unknown Company",
+          "skills": [
+            "Power BI",
+            "SSRS"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Graduate Business Analyst",
+          "company": "Unknown Company",
+          "skills": [
+            "Power BI",
+            "SSRS"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Data Analyst with Norwegian",
+          "company": "Unknown Company",
+          "skills": [
+            "Power BI",
+            "SSRS"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Principal Data Analyst - Strategy",
+          "company": "Unknown Company",
+          "skills": [
+            "Power BI",
+            "SSRS"
+          ],
+          "link": ""
+        },
+        {
+          "title": "IT Business Process Analyst",
+          "company": "Unknown Company",
+          "skills": [
+            "Power BI",
+            "SSRS"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Sales Operations and MI Analyst",
+          "company": "Unknown Company",
+          "skills": [
+            "Power BI",
+            "SSRS"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Business Analyst",
+          "company": "Unknown Company",
+          "skills": [
+            "Power BI",
+            "SSRS"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Graduate Planning and Business Analyst",
+          "company": "Unknown Company",
+          "skills": [
+            "Power BI",
+            "SSRS"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Senior Data Engineer - Analytics Engineering",
+          "company": "Unknown Company",
+          "skills": [
+            "Power BI",
+            "SSRS"
+          ],
+          "link": ""
+        },
+        {
+          "title": "FICO Business Analyst",
+          "company": "Unknown Company",
+          "skills": [
+            "Power BI",
+            "SSRS"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Financial Analyst - 12 Month Fixed-Term Contract",
+          "company": "Unknown Company",
+          "skills": [
+            "Power BI",
+            "SSRS"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Prioritization and Enforcement Analyst, German - Trust & Safety",
+          "company": "Unknown Company",
+          "skills": [
+            "Power BI",
+            "SSRS"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Senior Business Analyst Transfer Agency (Hybrid)",
+          "company": "Unknown Company",
+          "skills": [
+            "Power BI",
+            "SSRS"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Financial Reporting Oversight Senior Analyst",
+          "company": "Unknown Company",
+          "skills": [
+            "Power BI",
+            "SSRS"
           ],
           "link": ""
         }
@@ -69,233 +375,273 @@
     },
     "Portugal": {
       "country": "Portugal",
-      "last_24h": 14,
-      "last_7d": 97,
-      "last_30d": 248,
-      "remote": -1,
-      "on_site": -1,
+      "last_24h": 11,
+      "last_7d": 91,
+      "last_30d": 251,
+      "remote": 175,
+      "on_site": 78,
       "job_listings": [
         {
-          "title": "Data Governance Analyst",
+          "title": "Data Analyst",
           "company": "Unknown Company",
-          "skills": [],
+          "skills": [
+            "SQL",
+            "Tableau",
+            "Power BI"
+          ],
           "link": ""
         },
         {
-          "title": "RFP Analyst",
+          "title": "Data Collection Analyst(Support)",
           "company": "Unknown Company",
-          "skills": [],
+          "skills": [
+            "SQL",
+            "Tableau",
+            "Power BI"
+          ],
           "link": ""
         },
         {
-          "title": "Risk Analyst (Portfolio Analytics & Modeling)",
+          "title": "Analyst, Pricing",
           "company": "Unknown Company",
-          "skills": [],
+          "skills": [
+            "SQL",
+            "Tableau",
+            "Power BI"
+          ],
           "link": ""
         },
         {
-          "title": "Financial Techno-Economic Analyst",
+          "title": "Business Analyst | Project Manager (E-commerce | Digital projects) - PORTUGAL - Full remote",
           "company": "Unknown Company",
-          "skills": [],
+          "skills": [
+            "SQL",
+            "Tableau",
+            "Power BI"
+          ],
           "link": ""
         },
         {
-          "title": "Credit and Collections Analyst",
+          "title": "Senior Accounting Analyst",
           "company": "Unknown Company",
-          "skills": [],
+          "skills": [
+            "SQL",
+            "Tableau",
+            "Power BI"
+          ],
           "link": ""
         },
         {
-          "title": "Senior Product Analyst",
+          "title": "Senior Data Analyst",
           "company": "Unknown Company",
-          "skills": [],
+          "skills": [
+            "SQL",
+            "Tableau",
+            "Power BI"
+          ],
           "link": ""
         },
         {
-          "title": "Revenue Intern - Central Europe",
+          "title": "Corporate Statutory Accounting Analyst",
           "company": "Unknown Company",
-          "skills": [],
+          "skills": [
+            "SQL",
+            "Tableau",
+            "Power BI"
+          ],
           "link": ""
         },
         {
-          "title": "Senior Manager Technology \u2013 Commercial Data & Analytics",
+          "title": "Senior Data Engineer - GCP - PORTUGAL (Full remote)",
           "company": "Unknown Company",
-          "skills": [],
+          "skills": [
+            "SQL",
+            "Tableau",
+            "Power BI"
+          ],
           "link": ""
         },
         {
-          "title": "Analytics Engineer",
+          "title": "Lead Analyst for Mobility Electronics (f/m/div.)",
           "company": "Unknown Company",
-          "skills": [],
+          "skills": [
+            "SQL",
+            "Tableau",
+            "Power BI"
+          ],
           "link": ""
         },
         {
-          "title": "Integration Developer (m/f/d)",
+          "title": "Senior Controller",
           "company": "Unknown Company",
-          "skills": [],
+          "skills": [
+            "SQL",
+            "Tableau",
+            "Power BI"
+          ],
           "link": ""
         },
         {
-          "title": "Professional Platform Engineer - Build",
+          "title": "Creative Tech | Tech Lead Java",
           "company": "Unknown Company",
-          "skills": [],
-          "link": ""
-        },
-        {
-          "title": "Lead UX Researcher (Mat Cover)",
-          "company": "Unknown Company",
-          "skills": [],
-          "link": ""
-        },
-        {
-          "title": "Growth Product Manager (m / f / d) - Activation",
-          "company": "Unknown Company",
-          "skills": [],
-          "link": ""
-        },
-        {
-          "title": "Senior Product Manager, Authorization",
-          "company": "Unknown Company",
-          "skills": [],
+          "skills": [
+            "SQL",
+            "Tableau",
+            "Power BI"
+          ],
           "link": ""
         }
       ]
     },
     "United Arab Emirates": {
       "country": "United Arab Emirates",
-      "last_24h": 4,
-      "last_7d": 49,
-      "last_30d": 127,
-      "remote": 16,
-      "on_site": 111,
-      "job_listings": []
+      "last_24h": 8,
+      "last_7d": 45,
+      "last_30d": 134,
+      "remote": 14,
+      "on_site": 120,
+      "job_listings": [
+        {
+          "title": "Data Analyst",
+          "company": "Unknown Company",
+          "skills": [
+            "Data Visualization"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Business and MIS Analyst",
+          "company": "Unknown Company",
+          "skills": [
+            "Data Visualization"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Business Analyst | Advertising",
+          "company": "Unknown Company",
+          "skills": [
+            "Data Visualization"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Credit Risk Analyst",
+          "company": "Unknown Company",
+          "skills": [
+            "Data Visualization"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Investment Analyst",
+          "company": "Unknown Company",
+          "skills": [
+            "Data Visualization"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Group Analyst",
+          "company": "Unknown Company",
+          "skills": [
+            "Data Visualization"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Customer Service Specialist, Analytics",
+          "company": "Unknown Company",
+          "skills": [
+            "Data Visualization"
+          ],
+          "link": ""
+        },
+        {
+          "title": "VP- Credit Management (Private Banking)",
+          "company": "Unknown Company",
+          "skills": [
+            "Data Visualization"
+          ],
+          "link": ""
+        }
+      ]
     },
     "Germany": {
       "country": "Germany",
-      "last_24h": -1,
-      "last_7d": -1,
-      "last_30d": 359,
-      "remote": 256,
-      "on_site": 103,
+      "last_24h": 18,
+      "last_7d": 103,
+      "last_30d": 355,
+      "remote": 252,
+      "on_site": 104,
       "job_listings": [
         {
-          "title": "Junior Data Analyst (m/f/d) Autoteile",
+          "title": "Reporting Data Analyst - Engineering (f/m/d)",
           "company": "Unknown Company",
           "skills": [
-            "AI",
-            "Teams",
-            "Business",
-            "Agile"
+            "Tableau",
+            "Engineering",
+            "Organization"
           ],
           "link": ""
         },
         {
-          "title": "Data Analyst (m/w/d)",
+          "title": "Process Analyst - Fraud & FinCrime Operations (all genders)",
           "company": "Unknown Company",
           "skills": [
-            "AI",
-            "Teams",
-            "Business",
-            "Agile"
+            "Tableau",
+            "Engineering",
+            "Organization"
           ],
           "link": ""
         },
         {
-          "title": "Quantitative Analyst (f/m/x)",
+          "title": "Werkstudent:in Data Analyst:in in Investment Management (m/w/d)",
           "company": "Unknown Company",
           "skills": [
-            "AI",
-            "Teams",
-            "Business",
-            "Agile"
+            "Tableau",
+            "Engineering",
+            "Organization"
           ],
           "link": ""
         },
         {
-          "title": "HR Data Analyst (m/w/d)",
+          "title": "Index Analyst/Associate (f/m/d) Equity Index Management",
           "company": "Unknown Company",
           "skills": [
-            "AI",
-            "Teams",
-            "Business",
-            "Agile"
+            "Tableau",
+            "Engineering",
+            "Organization"
           ],
           "link": ""
         },
         {
-          "title": "Data-Analyst im Qualit\u00e4tsmanagement (m/w/d)",
+          "title": "Financial Data Analyst f\u00fcr Zahlungsverkehr und Datenanalyse m/w/d",
           "company": "Unknown Company",
           "skills": [
-            "AI",
-            "Teams",
-            "Business",
-            "Agile"
+            "Tableau",
+            "Engineering",
+            "Organization"
           ],
           "link": ""
         },
         {
-          "title": "Data & Process Analyst - Sales (m/w/d) - befristet",
+          "title": "HR Data Analyst / Scientist (m/w/d)",
           "company": "Unknown Company",
           "skills": [
-            "AI",
-            "Teams",
-            "Business",
-            "Agile"
+            "Tableau",
+            "Engineering",
+            "Organization"
           ],
           "link": ""
         },
         {
-          "title": "BI Analyst (m/w/d)",
+          "title": "Senior Quantitative Analyst",
           "company": "Unknown Company",
           "skills": [
-            "AI",
-            "Teams",
-            "Business",
-            "Agile"
-          ],
-          "link": ""
-        },
-        {
-          "title": "Data Engineer / Business Intelligence Analyst (m/w/d)",
-          "company": "Unknown Company",
-          "skills": [
-            "AI",
-            "Teams",
-            "Business",
-            "Agile"
-          ],
-          "link": ""
-        },
-        {
-          "title": "Data Scientist - Experimentation (all genders)",
-          "company": "Unknown Company",
-          "skills": [
-            "AI",
-            "Teams",
-            "Business",
-            "Agile"
-          ],
-          "link": ""
-        },
-        {
-          "title": "Data Engineer & BI Specialist* (m/w/d)",
-          "company": "Unknown Company",
-          "skills": [
-            "AI",
-            "Teams",
-            "Business",
-            "Agile"
-          ],
-          "link": ""
-        },
-        {
-          "title": "Portfolio Manager/Analyst (f/m/d)",
-          "company": "Unknown Company",
-          "skills": [
-            "AI",
-            "Teams",
-            "Business",
-            "Agile"
+            "Tableau",
+            "Engineering",
+            "Organization"
           ],
           "link": ""
         },
@@ -303,103 +649,114 @@
           "title": "Logistics Management Analyst Sr (GS)",
           "company": "Unknown Company",
           "skills": [
-            "AI",
-            "Teams",
-            "Business",
-            "Agile"
+            "Tableau",
+            "Engineering",
+            "Organization"
           ],
           "link": ""
         },
         {
-          "title": "Senior Financial Analyst, Amazon Logistics Finance",
+          "title": "JUNIOR FINANCIAL CONTROLLER EUROPE",
           "company": "Unknown Company",
           "skills": [
-            "AI",
-            "Teams",
-            "Business",
-            "Agile"
+            "Tableau",
+            "Engineering",
+            "Organization"
           ],
           "link": ""
         },
         {
-          "title": "Technical Customer Support Analyst",
+          "title": "Data Manager / Datenerfasser f\u00fcr Investmentfonds (m/w/d) in Teilzeit",
           "company": "Unknown Company",
           "skills": [
-            "AI",
-            "Teams",
-            "Business",
-            "Agile"
+            "Tableau",
+            "Engineering",
+            "Organization"
           ],
           "link": ""
         },
         {
-          "title": "Working Student Business Intelligence (all genders)",
+          "title": "Technical Business Analyst (m/w/d)",
           "company": "Unknown Company",
           "skills": [
-            "AI",
-            "Teams",
-            "Business",
-            "Agile"
+            "Tableau",
+            "Engineering",
+            "Organization"
           ],
           "link": ""
         },
         {
-          "title": "European Retail Search Manager",
+          "title": "Product Owner - Payment Apps (m/d/f)",
           "company": "Unknown Company",
           "skills": [
-            "AI",
-            "Teams",
-            "Business",
-            "Agile"
+            "Tableau",
+            "Engineering",
+            "Organization"
           ],
           "link": ""
         },
         {
-          "title": "AISG-0350 QA-Engineer Oracle",
+          "title": "Data Manager / Datenerfasser f\u00fcr Investmentfonds (m/w/d) in Teil- oder Vollzeit",
           "company": "Unknown Company",
           "skills": [
-            "AI",
-            "Teams",
-            "Business",
-            "Agile"
+            "Tableau",
+            "Engineering",
+            "Organization"
           ],
           "link": ""
         },
         {
-          "title": "IT SOX Compliance Analyst (m/f/d)",
+          "title": "Senior Product Operations Manager (f/m/d)",
           "company": "Unknown Company",
           "skills": [
-            "AI",
-            "Teams",
-            "Business",
-            "Agile"
+            "Tableau",
+            "Engineering",
+            "Organization"
           ],
           "link": ""
         },
         {
-          "title": "Senior Product Manager - Web",
+          "title": "Senior Sales Representative",
           "company": "Unknown Company",
           "skills": [
-            "AI",
-            "Teams",
-            "Business",
-            "Agile"
+            "Tableau",
+            "Engineering",
+            "Organization"
           ],
           "link": ""
         },
         {
-          "title": "Growth Product Manager (m / f / d) - Activation",
+          "title": "Account Executive",
           "company": "Unknown Company",
           "skills": [
-            "AI",
-            "Teams",
-            "Business",
-            "Agile"
+            "Tableau",
+            "Engineering",
+            "Organization"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Software Backend Engineer - Lounge by Zalando (all genders)",
+          "company": "Unknown Company",
+          "skills": [
+            "Tableau",
+            "Engineering",
+            "Organization"
+          ],
+          "link": ""
+        },
+        {
+          "title": "Senior Product Manager - Berlin",
+          "company": "Unknown Company",
+          "skills": [
+            "Tableau",
+            "Engineering",
+            "Organization"
           ],
           "link": ""
         }
       ]
     }
   },
-  "last_updated": "2025-05-12T23:29:49Z"
+  "last_updated": "2025-05-13T23:28:01Z"
 }
